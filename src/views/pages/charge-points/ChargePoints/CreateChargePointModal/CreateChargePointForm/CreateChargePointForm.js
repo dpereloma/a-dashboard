@@ -2,12 +2,24 @@ import React from 'react';
 
 import { MenuItem, Select, TextField } from '@mui/material';
 
-import { accessibilities, connections, pointStates, states } from '../../ChargePoints.utils';
+import {
+    accessibilities,
+    connections,
+    pointStates,
+    states,
+} from '../../ChargePoints.utils';
 import * as S from './CreateChargePointForm.styles';
 
 export const CreateChargePointForm = ({ values, handleChange }) => {
     const renderTextField = (name) => (
-        <TextField size="small" fullWidth name={name} value={values[name]} onChange={handleChange} type="text" />
+        <TextField
+            size="small"
+            fullWidth
+            name={name}
+            value={values[name]}
+            onChange={handleChange}
+            type="text"
+        />
     );
 
     const renderSelect = (name, items) => (
@@ -18,7 +30,7 @@ export const CreateChargePointForm = ({ values, handleChange }) => {
             value={values[name]}
             onChange={handleChange}
             SelectProps={{
-                native: true
+                native: true,
             }}
         >
             {items.map((option) => (
@@ -32,32 +44,32 @@ export const CreateChargePointForm = ({ values, handleChange }) => {
     const createChargePointFormFields = [
         {
             name: 'name',
-            component: renderTextField('name')
+            component: renderTextField('name'),
         },
         {
             name: 'code',
-            component: renderTextField('code')
+            component: renderTextField('code'),
         },
         {
             name: 'site',
-            component: renderTextField('site')
+            component: renderTextField('site'),
         },
         {
             name: 'pointState',
-            component: renderSelect('pointState', pointStates)
+            component: renderSelect('pointState', pointStates),
         },
         {
             name: 'connection',
-            component: renderSelect('connection', connections)
+            component: renderSelect('connection', connections),
         },
         {
             name: 'accessibility',
-            component: renderSelect('accessibility', accessibilities)
+            component: renderSelect('accessibility', accessibilities),
         },
         {
             name: 'state',
-            component: renderSelect('state', states)
-        }
+            component: renderSelect('state', states),
+        },
     ];
 
     return createChargePointFormFields.map(({ name, component }) => (

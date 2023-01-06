@@ -1,12 +1,8 @@
-// assets
 import { IconKey } from '@tabler/icons';
 
-// constant
 const icons = {
-    IconKey
+    IconKey,
 };
-
-// ==============================|| EXTRA PAGES MENU ITEMS ||============================== //
 
 const pages = {
     id: 'pages',
@@ -25,16 +21,23 @@ const pages = {
                     title: 'Login',
                     type: 'item',
                     url: '/pages/login/login3',
-                    target: false
+                    target: false,
                 },
                 {
                     id: 'register3',
                     title: 'Register',
                     type: 'item',
                     url: '/pages/register/register3',
-                    target: true
-                }
-            ]
+                    target: true,
+                },
+            ],
+        },
+        {
+            id: 'teams',
+            title: 'Teams',
+            type: 'item',
+            url: '/teams',
+            icon: icons.IconKey,
         },
         {
             id: 'charge-points',
@@ -47,11 +50,11 @@ const pages = {
                     title: 'Charge Points',
                     type: 'item',
                     url: '/charge-points',
-                    target: false
-                }
-            ]
-        }
-    ]
+                    target: false,
+                },
+            ],
+        },
+    ],
 };
 
 export default pages;

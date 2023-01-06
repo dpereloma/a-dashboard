@@ -15,7 +15,7 @@ export const ChargePointsFilter = ({ handleChange, filterValues }) => {
             value={filterValues[name]}
             onChange={handleChange}
             SelectProps={{
-                native: true
+                native: true,
             }}
         >
             <MenuItem value="-">-</MenuItem>
@@ -42,5 +42,5 @@ export const ChargePointsFilter = ({ handleChange, filterValues }) => {
 
 ChargePointsFilter.propTypes = {
     handleChange: PropTypes.func,
-    filterValues: PropTypes.object
+    filterValues: PropTypes.object,
 };

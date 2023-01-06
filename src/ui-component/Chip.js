@@ -7,31 +7,31 @@ export const Chip = ({ variant, text }) => {
 
     const chipSX = {
         height: 24,
-        padding: '0 6px'
+        padding: '0 6px',
     };
 
     const chipErrorSX = {
         ...chipSX,
         color: theme.palette.orange.dark,
-        backgroundColor: theme.palette.orange.light
+        backgroundColor: theme.palette.orange.light,
     };
 
     const chipWarningSX = {
         ...chipSX,
         color: theme.palette.warning.dark,
-        backgroundColor: theme.palette.warning.light
+        backgroundColor: theme.palette.warning.light,
     };
 
     const chipSuccessSX = {
         ...chipSX,
         color: theme.palette.success.dark,
-        backgroundColor: theme.palette.success.light
+        backgroundColor: theme.palette.success.light,
     };
 
     const sx = {
         success: chipSuccessSX,
         warning: chipWarningSX,
-        error: chipErrorSX
+        error: chipErrorSX,
     };
 
     return <MuiChip sx={sx[variant]} label={text} />;

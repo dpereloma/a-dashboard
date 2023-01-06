@@ -1,6 +1,7 @@
-import { useDeviceIsDown } from '../../../../../../hooks';
 import { useEffect, useRef } from 'react';
 import { useFormik } from 'formik';
+
+import { useDeviceIsDown } from 'hooks';
 
 export const useCodeForm = (hackValue, onSubmit) => {
     const isMobile = useDeviceIsDown('laptop');
@@ -11,7 +12,7 @@ export const useCodeForm = (hackValue, onSubmit) => {
         onSubmit: ({ code }) => {
             onSubmit(code);
             abortRef.current.abort();
-        }
+        },
     });
 
     const isDisabled = formik.values.code.length !== 4;
@@ -29,7 +30,7 @@ export const useCodeForm = (hackValue, onSubmit) => {
             window.navigator.credentials
                 .get({
                     otp: { transport: ['sms'] },
-                    signal: abortRef.current.signal
+                    signal: abortRef.current.signal,
                 })
                 .then((otr) => {
                     if (otr && otr.code) {
@@ -53,6 +54,6 @@ export const useCodeForm = (hackValue, onSubmit) => {
         setFieldValue: formik.setFieldValue,
         formatSeconds,
         isMobile,
-        isDisabled
+        isDisabled,
     };
 };

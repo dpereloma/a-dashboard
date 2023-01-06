@@ -5,11 +5,11 @@ import { Box, Menu, MenuItem, Typography } from '@mui/material';
 
 const DropdownList = styled(Menu)(() => ({
     '& ul': {
-        padding: '8px'
-    }
+        padding: '8px',
+    },
 }));
 
-export const DropdownMenu = ({ icon, label, renderFilterList }) => {
+export const DropdownMenu = ({ icon, label, renderContent }) => {
     const theme = useTheme();
     const [anchorEl, setAnchorEl] = useState(null);
     const [selectedValue, setSelectedValue] = useState('');
@@ -32,7 +32,7 @@ export const DropdownMenu = ({ icon, label, renderFilterList }) => {
                 fontSize="small"
                 sx={{
                     color: theme.palette.grey[600],
-                    cursor: 'pointer'
+                    cursor: 'pointer',
                 }}
                 aria-controls="menu-popular-card"
                 aria-haspopup="true"
@@ -47,15 +47,15 @@ export const DropdownMenu = ({ icon, label, renderFilterList }) => {
                 variant="selectedMenu"
                 anchorOrigin={{
                     vertical: 'bottom',
-                    horizontal: 'right'
+                    horizontal: 'right',
                 }}
                 transformOrigin={{
                     vertical: 'top',
-                    horizontal: 'right'
+                    horizontal: 'right',
                 }}
             >
-                {renderFilterList ? (
-                    renderFilterList()
+                {renderContent ? (
+                    renderContent()
                 ) : (
                     <>
                         <MenuItem onClick={handleClose}> Today</MenuItem>

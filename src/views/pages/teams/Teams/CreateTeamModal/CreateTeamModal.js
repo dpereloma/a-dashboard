@@ -4,26 +4,24 @@ import PropTypes from 'prop-types';
 
 import { DialogContent, DialogActions, Box, Button } from '@mui/material';
 import { EdgeDialog } from 'ui-component/EdgeDialog';
-import { CreateChargePointForm } from './CreateChargePointForm';
+import { CreateTeamForm } from './CreateTeamForm';
 
-import { chargePointsActions } from 'store/chargePointsSlice';
+import { teamsActions } from 'store/teamsSlice';
 
-export const CreateChargePointModal = ({ isOpen, onClose }) => {
+export const CreateTeamModal = ({ isOpen, onClose }) => {
     const dispatch = useDispatch();
     const formik = useFormik({
         enableReinitialize: true,
         initialValues: {
             name: '',
-            code: '',
-            site: '',
-            pointState: 'active',
-            connection: 'disconnected',
-            accessibility: 'public',
-            state: 'connected',
+            plan: '',
+            members: '',
+            chargePoints: '',
+            wallet: '',
         },
         onSubmit: (values) => {
             dispatch(
-                chargePointsActions.addChargePoint({
+                teamsActions.addTeam({
                     id: Date.now(),
                     ...values,
                 }),
@@ -33,11 +31,11 @@ export const CreateChargePointModal = ({ isOpen, onClose }) => {
     });
 
     return (
-        <EdgeDialog open={isOpen} title="Create charge point" onClose={onClose}>
+        <EdgeDialog open={isOpen} title="Create team" onClose={onClose}>
             <form onSubmit={formik.handleSubmit}>
                 <DialogContent>
                     <Box width={375}>
-                        <CreateChargePointForm
+                        <CreateTeamForm
                             values={formik.values}
                             handleChange={formik.handleChange}
                         />
@@ -59,7 +57,7 @@ export const CreateChargePointModal = ({ isOpen, onClose }) => {
     );
 };
 
-CreateChargePointModal.propTypes = {
+CreateTeamModal.propTypes = {
     isOpen: PropTypes.bool,
     onClose: PropTypes.func,
 };

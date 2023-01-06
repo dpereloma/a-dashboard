@@ -9,11 +9,11 @@ export const ActionsContainer = styled('div')(({ theme }) => ({
         position: 'absolute',
         bottom: theme.spacing(2),
         left: theme.spacing(2),
-        right: theme.spacing(2)
-    }
+        right: theme.spacing(2),
+    },
 }));
 
 export const AutocompleteInput = styled('input')({
     position: 'absolute',
-    opacity: 0
+    opacity: 0,
 });

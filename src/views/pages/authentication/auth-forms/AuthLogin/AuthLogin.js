@@ -14,27 +14,31 @@ const FirebaseLogin = ({ ...others }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const [country, setCountry] = useState(countries.countries[countries.defaultCountry]);
+    const [country, setCountry] = useState(
+        countries.countries[countries.defaultCountry],
+    );
     const [step, setStep] = useState(0);
     const [phone, setPhone] = useState(null);
     const [maxAttempsAchieved, setMaxAttempsAchieved] = useState(false);
-    const [token, setToken] = useState(null);
+    // const [token, setToken] = useState(null);
 
     const countdown = useCountdown();
 
     const isReady = true;
 
-    const getFullPhoneNumber = (phoneCode, phone) => (phoneCode + phone).replace(/\D/g, '');
+    // const getFullPhoneNumber = (phoneCode, phone) =>
+    //     (phoneCode + phone).replace(/\D/g, '');
 
     const handleSendCode = (phone) => {
-        const fullPhone = getFullPhoneNumber(country.phoneCode, phone);
+        // const fullPhone = getFullPhoneNumber(country.phoneCode, phone);
 
         // sendCodeMutation.mutate(
         //   { data: { phone: fullPhone } },
         //   {
         //       onSuccess: (data) => {
         //           loginMutation.reset();
-        //           const resendCodeDeley = config.get<number>('auth.codeSendDelay');
+        //           const resendCodeDeley =
+        //           config.get<number>('auth.codeSendDelay');
         //           countdown.start(resendCodeDeley);
         //           setToken(data.token);
         //           setPhone(phone);
@@ -67,7 +71,7 @@ const FirebaseLogin = ({ ...others }) => {
         //     return;
         // }
 
-        const fullPhone = getFullPhoneNumber(country.phoneCode, phone);
+        // const fullPhone = getFullPhoneNumber(country.phoneCode, phone);
 
         setMaxAttempsAchieved(false);
         // login({ isAuth: true });
@@ -136,9 +140,11 @@ const FirebaseLogin = ({ ...others }) => {
                         enableResend={countdown.status === 'finished'}
                         phone={`${country.phoneCode} ${phone}`}
                         errorMsg={''}
-                        // errorMsg={getError(LocaleKeys.SIGN_IN_ERROR_CODE_ENTER_LIMIT, loginMutation.error)}
+                        // errorMsg={getError(LocaleKeys.SIGN_IN_ERROR_COD
+                        // E_ENTER_LIMIT, loginMutation.error)}
                         codeErrorMsg={''}
-                        // codeErrorMsg={getError(LocaleKeys.SIGN_IN_ERROR_CODE_SEND_LIMIT, sendCodeMutation.error)}
+                        // codeErrorMsg={getError(LocaleKeys.SIGN_IN_ERRO
+                        // R_CODE_SEND_LIMIT, sendCodeMutation.error)}
                         maxAttempsAchieved={maxAttempsAchieved}
                         onResendCode={handleResendCode}
                         onBack={() => setStep(0)}

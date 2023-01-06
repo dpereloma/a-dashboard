@@ -1,52 +1,87 @@
 {
-    "root": true,
     "env": {
         "browser": true,
         "es2021": true
     },
-    "extends": ["prettier", "plugin:react/jsx-runtime", "plugin:jsx-a11y/recommended", "plugin:react-hooks/recommended"],
-    "settings": {
-        "import/resolver": {
-            "node": {
-                "moduleDirectory": ["node_modules", "src/"]
-            }
-        }
-    },
-    "parser": "@babel/eslint-parser",
+    "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "plugin:react-hooks/recommended",
+        "plugin:react/recommended",
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:import/typescript",
+        "google",
+        "plugin:prettier/recommended",
+        "prettier"
+    ],
+    "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaFeatures": {
-            "experimentalObjectRestSpread": true,
-            "impliedStrict": true
+            "jsx": true
         },
-        "ecmaVersion": 12
+        "ecmaVersion": "latest",
+        "sourceType": "module"
     },
-    "plugins": ["prettier", "react", "react-hooks"],
+    "plugins": [
+        "react",
+        "@typescript-eslint",
+        "prettier"
+    ],
     "rules": {
-        "react/jsx-filename-extension": 0,
-        "no-param-reassign": 0,
-        "react/prop-types": 1,
-        "react/require-default-props": 0,
-        "react/no-array-index-key": 0,
-        "react/jsx-props-no-spreading": 0,
-        "react/forbid-prop-types": 0,
-        "import/order": 0,
+        "class-methods-use-this": "off",
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.{stories,story}.{js,jsx}"]}],
+        "import/no-named-as-default": 0,
+        "import/newline-after-import": ["error", { "count": 1 }],
+        "import/prefer-default-export": "off",
+        "jsx-a11y/click-events-have-key-events": 0,
+        "jsx-a11y/label-has-associated-control": 0,
+        "jsx-a11y/no-noninteractive-element-interactions": 0,
+        "jsx-a11y/no-static-element-interactions": 0,
+        "no-multiple-empty-lines": ["error", { "max": 2 }],
+        "linebreak-style": ["error", "unix"],
+        "max-len": [2, 80],
+        "import/no-unresolved": "off",
+        "new-cap": "off",
         "no-console": 0,
-        "jsx-a11y/anchor-is-valid": 0,
-        "prefer-destructuring": 0,
-        "no-shadow": 0,
-        "no-unused-vars": [
-            1,
-            {
-                "ignoreRestSiblings": false
-            }
+        "no-nested-ternary": 0,
+        "no-param-reassign": ["error", { "props": false }],
+        "no-return-assign": 0,
+        "no-underscore-dangle": 0,
+        "no-void": 0,
+        "no-plusplus": 0,
+        "no-restricted-syntax": [
+            "error",
+            "LabeledStatement",
+            "WithStatement"
         ],
+        "prefer-destructuring": ["error", {
+            "VariableDeclarator": {
+                "array": false,
+                "object": true
+            },
+            "AssignmentExpression": {
+                "array": false,
+                "object": true
+            }
+        }, {
+            "enforceForRenamedProperties": false
+        }],
+        "react/jsx-props-no-spreading": "off",
+        "react/no-array-index-key": "off",
+        "react/react-in-jsx-scope": "off",
+        "react/no-did-mount-set-state": "off",
+        "react/no-did-update-set-state": "off",
+        "react/prop-types": 0,
+        "react/require-default-props": "off",
+        "react/state-in-constructor": 0,
+        "react/static-property-placement": 0,
         "prettier/prettier": [
             2,
             {
                 "bracketSpacing": true,
-                "printWidth": 140,
+                "printWidth": 80,
                 "singleQuote": true,
-                "trailingComma": "none",
+                "trailingComma": "all",
                 "tabWidth": 4,
                 "useTabs": false,
                 "endOfLine": "auto"

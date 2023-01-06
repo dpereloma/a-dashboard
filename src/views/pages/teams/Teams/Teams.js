@@ -1,35 +1,18 @@
 import React, { useState } from 'react';
 
-import { Button, IconButton } from '@mui/material';
-import { FilterList } from '@mui/icons-material';
+import { Button } from '@mui/material';
 import MainCard from 'ui-component/cards/MainCard';
 import { SearchInput } from 'ui-component/inputs';
-import { DropdownMenu } from 'ui-component/extended/DropdownMenu';
-import { ChargePointsTable } from './ChargePointsTable';
-import { ChargePointsFilter } from './ChargePointsFilter';
-import { CreateChargePointModal } from './CreateChargePointModal';
+import { TeamsTable } from './TeamsTable';
+import { CreateTeamModal } from './CreateTeamModal';
 
-import { useChargePoints } from './ChargePoints.utils';
-import * as S from './ChargePoints.styles';
+import { useTeams } from './Teams.utils';
+import * as S from './Teams.styles';
 
-const ChargePoints = () => {
+const Teams = () => {
     const [openCreateModal, setOpenCreateModal] = useState(false);
 
-    const {
-        filteredChargePoints,
-        filterValues,
-        searchValue,
-        handleChange,
-        onSearchChange,
-        onSearchClear,
-    } = useChargePoints();
-
-    const renderFilterList = () => (
-        <ChargePointsFilter
-            handleChange={handleChange}
-            filterValues={filterValues}
-        />
-    );
+    const { teams, searchValue, onSearchChange, onSearchClear } = useTeams();
 
     const renderHeaderAction = () => (
         <Button
@@ -52,31 +35,25 @@ const ChargePoints = () => {
                 onChange={onSearchChange}
                 onClear={onSearchClear}
             />
-            <IconButton size="small">
-                <DropdownMenu
-                    icon={FilterList}
-                    renderContent={renderFilterList}
-                />
-            </IconButton>
         </S.ActionsWrapper>
     );
 
     return (
         <>
             <MainCard
-                title="Charge Points"
+                title="Teams"
                 secondary={renderHeaderAction()}
                 content={false}
             />
             <MainCard
                 sx={{ marginTop: '16px' }}
                 contentSX={{ padding: 0 }}
-                title="List Table"
+                title="Your teams"
                 secondary={renderAction()}
             >
-                <ChargePointsTable chargePoints={filteredChargePoints} />
+                <TeamsTable teams={teams} />
             </MainCard>
-            <CreateChargePointModal
+            <CreateTeamModal
                 isOpen={openCreateModal}
                 onClose={() => setOpenCreateModal(false)}
             />
@@ -84,4 +61,4 @@ const ChargePoints = () => {
     );
 };
 
-export default ChargePoints;
+export default Teams;
