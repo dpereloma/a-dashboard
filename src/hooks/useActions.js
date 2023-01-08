@@ -4,10 +4,10 @@ import { customizationSlice } from 'store/customizationSlice';
 import { authReducer } from 'store/authSlice';
 
 const actions = {
-    ...customizationSlice,
-    ...authReducer
+  ...customizationSlice,
+  ...authReducer,
 };
 export const useActions = () => {
-    const dispatch = useDispatch();
-    return bindActionCreators(actions, dispatch);
+  const dispatch = useDispatch();
+  return bindActionCreators(actions, dispatch);
 };

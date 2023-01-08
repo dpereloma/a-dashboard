@@ -5,12 +5,12 @@ import { chargePointsReducer } from './chargePointsSlice';
 import { teamsReducer } from './teamsSlice';
 
 const store = configureStore({
-    reducer: {
-        customization: customizationReducer,
-        auth: authReducer,
-        chargePoints: chargePointsReducer,
-        teams: teamsReducer,
-    },
+  reducer: {
+    customization: customizationReducer,
+    auth: authReducer,
+    chargePoints: chargePointsReducer,
+    teams: teamsReducer,
+  },
 });
 
 export { store };

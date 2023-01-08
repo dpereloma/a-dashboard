@@ -4,7 +4,7 @@ import utilities from './utilities';
 import other from './other';
 
 const menuItems = {
-    items: [dashboard, pages, utilities, other],
+  items: [dashboard, pages, utilities, other],
 };
 
 export default menuItems;

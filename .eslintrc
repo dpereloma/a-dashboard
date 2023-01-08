@@ -39,7 +39,6 @@
         "jsx-a11y/no-static-element-interactions": 0,
         "no-multiple-empty-lines": ["error", { "max": 2 }],
         "linebreak-style": ["error", "unix"],
-        "max-len": [2, 80],
         "import/no-unresolved": "off",
         "new-cap": "off",
         "no-console": 0,
@@ -82,7 +81,7 @@
                 "printWidth": 80,
                 "singleQuote": true,
                 "trailingComma": "all",
-                "tabWidth": 4,
+                "tabWidth": 2,
                 "useTabs": false,
                 "endOfLine": "auto"
             }

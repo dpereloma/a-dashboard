@@ -3,16 +3,16 @@ import { createSlice } from '@reduxjs/toolkit';
 import config from '../config';
 
 export const initialState = {
-    isOpen: [],
-    fontFamily: config.fontFamily,
-    borderRadius: config.borderRadius,
-    opened: true
+  isOpen: [],
+  fontFamily: config.fontFamily,
+  borderRadius: config.borderRadius,
+  opened: true,
 };
 
 export const customizationSlice = createSlice({
-    name: 'customization',
-    initialState,
-    reducers: {}
+  name: 'customization',
+  initialState,
+  reducers: {},
 });
 
 export const customizationActions = customizationSlice.actions;

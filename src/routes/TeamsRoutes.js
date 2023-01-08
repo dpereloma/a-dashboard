@@ -9,18 +9,18 @@ const Teams = Loadable(lazy(() => import('views/pages/teams/Teams/Teams')));
 // import('views/pages/charge-points/ChargePointsDetail/ChargePointsDetail')));
 
 const ChargePointsRoutes = {
-    path: '/',
-    element: <MainLayout />,
-    children: [
-        {
-            path: '/teams',
-            element: <PrivateRoute element={<Teams />} />,
-        },
-        // {
-        //     path: '/charge-points/:id',
-        //     element: <PrivateRoute element={<ChargePointsDetail />} />
-        // }
-    ],
+  path: '/',
+  element: <MainLayout />,
+  children: [
+    {
+      path: '/teams',
+      element: <PrivateRoute element={<Teams />} />,
+    },
+    // {
+    //     path: '/charge-points/:id',
+    //     element: <PrivateRoute element={<ChargePointsDetail />} />
+    // }
+  ],
 };
 
 export default ChargePointsRoutes;

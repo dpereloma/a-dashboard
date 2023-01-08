@@ -6,25 +6,25 @@ import IconButton from '@mui/material/IconButton';
 import { Close } from '@mui/icons-material';
 
 const Title = styled('h2')(() => ({
-    flexGrow: 1,
-    margin: 0
+  flexGrow: 1,
+  margin: 0,
 }));
 
 const Wrapper = styled('div')({
-    display: 'flex',
-    alignItems: 'center',
-    marginLeft: 20,
-    marginRight: 20,
-    marginTop: 16
+  display: 'flex',
+  alignItems: 'center',
+  marginLeft: 20,
+  marginRight: 20,
+  marginTop: 16,
 });
 
-export function DialogTitle({ children, className, onClose }) {
-    return (
-        <Wrapper className={className}>
-            <Title>{children}</Title>
-            <IconButton size="small" onClick={onClose}>
-                <Close fontSize="small" />
-            </IconButton>
-        </Wrapper>
-    );
-}
+export const DialogTitle = ({ children, className, onClose }) => {
+  return (
+    <Wrapper className={className}>
+      <Title>{children}</Title>
+      <IconButton size="small" onClick={onClose}>
+        <Close fontSize="small" />
+      </IconButton>
+    </Wrapper>
+  );
+};
