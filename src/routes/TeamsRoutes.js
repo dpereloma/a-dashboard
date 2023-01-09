@@ -3,6 +3,7 @@ import { lazy } from 'react';
 import Loadable from 'ui-component/Loadable';
 import MainLayout from 'layout/MainLayout';
 import { PrivateRoute } from 'layout/PrivateRoute';
+import TeamsDetail from '../views/pages/teams/TeamsDetail/TeamsDetail';
 
 const Teams = Loadable(lazy(() => import('views/pages/teams/Teams/Teams')));
 // const ChargePointsDetail = Loadable(lazy(() =>
@@ -16,10 +17,10 @@ const ChargePointsRoutes = {
       path: '/teams',
       element: <PrivateRoute element={<Teams />} />,
     },
-    // {
-    //     path: '/charge-points/:id',
-    //     element: <PrivateRoute element={<ChargePointsDetail />} />
-    // }
+    {
+      path: '/teams/:id',
+      element: <PrivateRoute element={<TeamsDetail />} />,
+    },
   ],
 };
 

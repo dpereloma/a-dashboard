@@ -9,57 +9,57 @@ import { CreateChargePointForm } from './CreateChargePointForm';
 import { chargePointsActions } from 'store/chargePointsSlice';
 
 export const CreateChargePointModal = ({ isOpen, onClose }) => {
-    const dispatch = useDispatch();
-    const formik = useFormik({
-        enableReinitialize: true,
-        initialValues: {
-            name: '',
-            code: '',
-            site: '',
-            pointState: 'active',
-            connection: 'disconnected',
-            accessibility: 'public',
-            state: 'connected',
-        },
-        onSubmit: (values) => {
-            dispatch(
-                chargePointsActions.addChargePoint({
-                    id: Date.now(),
-                    ...values,
-                }),
-            );
-            onClose();
-        },
-    });
+  const dispatch = useDispatch();
+  const formik = useFormik({
+    enableReinitialize: true,
+    initialValues: {
+      name: '',
+      code: '',
+      site: '',
+      pointState: 'active',
+      connection: 'disconnected',
+      accessibility: 'public',
+      state: 'connected',
+    },
+    onSubmit: (values) => {
+      dispatch(
+        chargePointsActions.addChargePoint({
+          id: Date.now(),
+          ...values,
+        }),
+      );
+      onClose();
+    },
+  });
 
-    return (
-        <EdgeDialog open={isOpen} title="Create charge point" onClose={onClose}>
-            <form onSubmit={formik.handleSubmit}>
-                <DialogContent>
-                    <Box width={375}>
-                        <CreateChargePointForm
-                            values={formik.values}
-                            handleChange={formik.handleChange}
-                        />
-                    </Box>
-                </DialogContent>
-                <DialogActions>
-                    <Button
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        fullWidth
-                        disabled={false}
-                    >
-                        Create
-                    </Button>
-                </DialogActions>
-            </form>
-        </EdgeDialog>
-    );
+  return (
+    <EdgeDialog open={isOpen} title="Create charge point" onClose={onClose}>
+      <form onSubmit={formik.handleSubmit}>
+        <DialogContent>
+          <Box width={375}>
+            <CreateChargePointForm
+              values={formik.values}
+              handleChange={formik.handleChange}
+            />
+          </Box>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth
+            disabled={false}
+          >
+            Create
+          </Button>
+        </DialogActions>
+      </form>
+    </EdgeDialog>
+  );
 };
 
 CreateChargePointModal.propTypes = {
-    isOpen: PropTypes.bool,
-    onClose: PropTypes.func,
+  isOpen: PropTypes.bool,
+  onClose: PropTypes.func,
 };
