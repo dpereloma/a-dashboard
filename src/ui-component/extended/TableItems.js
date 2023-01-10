@@ -7,6 +7,7 @@ import {
   TableCell,
   TableHead,
   TableRow,
+  Typography,
 } from '@mui/material';
 import { styled } from '@mui/styles';
 import { DropdownMenu } from './DropdownMenu';
@@ -35,6 +36,7 @@ export const TableItems = ({
   renderAction,
   key = 'id',
   handleSelect,
+  emptyItemsMessage,
 }) => {
   const hasActions = !!renderAction;
 
@@ -73,6 +75,18 @@ export const TableItems = ({
           ))}
         </BodyRows>
       </Table>
+      {items?.length === 0 ? (
+        <Box
+          sx={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            paddingTop: '24px',
+          }}
+        >
+          <Typography variant="h3">{emptyItemsMessage}</Typography>
+        </Box>
+      ) : null}
     </Box>
   );
 };
