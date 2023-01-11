@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 
 const headerSX = {
-  '& .MuiCardHeader-action': { mr: 0 },
+  '& .MuiCardHeader-action': { mr: 0, marginTop: 0, alignSelf: 'center' },
 };
 
 const MainCard = forwardRef(

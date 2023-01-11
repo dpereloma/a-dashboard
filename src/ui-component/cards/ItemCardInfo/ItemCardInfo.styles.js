@@ -2,25 +2,25 @@ import { styled } from '@mui/styles';
 
 import { Box } from '@mui/material';
 
-export const Image = styled(Box)(({ theme }) => ({
+export const Image = styled(Box)(({ theme, bgColor, color }) => ({
   width: theme.spacing(8),
   height: theme.spacing(8),
   borderRadius: '50%',
-  backgroundColor: theme.palette.grey[100],
+  backgroundColor: bgColor ?? theme.palette.grey[100],
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  color: color ?? 'black',
 }));
 
 export const Wrapper = styled(Box)(({ theme }) => ({
-  width: '100%',
   display: 'flex',
   gap: theme.spacing(2),
 }));
 
-export const TextWrapper = styled(Box)(() => ({
+export const TextWrapper = styled(Box)(({ hasValue }) => ({
   display: 'flex',
   alignSelf: 'stretch',
   flexDirection: 'column',
-  justifyContent: 'space-between',
+  justifyContent: hasValue ? 'space-between' : 'center',
 }));

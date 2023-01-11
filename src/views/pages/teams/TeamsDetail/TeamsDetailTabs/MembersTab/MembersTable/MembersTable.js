@@ -51,7 +51,7 @@ export const MembersTable = ({ members }) => {
       renderTableHeader={renderTableHeader}
       renderTableBody={renderTableBody}
       items={members}
-      emptyItemsMessage="Members not yet"
+      emptyItemsMessage="No members"
     />
   );
 };

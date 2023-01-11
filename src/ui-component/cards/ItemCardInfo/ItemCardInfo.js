@@ -5,13 +5,23 @@ import { Typography } from '@mui/material';
 
 import * as S from './ItemCardInfo.styles';
 
-export const ItemCardInfo = ({ title, value, img }) => {
+export const ItemCardInfo = ({
+  title,
+  value,
+  img,
+  titleVariant = 'h2',
+  valueVariant = 'body2',
+  bgColor,
+  color,
+}) => {
   return (
     <S.Wrapper>
-      <S.Image>{img}</S.Image>
-      <S.TextWrapper>
-        <Typography variant="body2">{title}</Typography>
-        <Typography variant="h1">{value}</Typography>
+      <S.Image color={color} bgColor={bgColor}>
+        {img}
+      </S.Image>
+      <S.TextWrapper hasValue={!!value}>
+        <Typography variant={titleVariant}>{title}</Typography>
+        {value ? <Typography variant={valueVariant}>{value}</Typography> : null}
       </S.TextWrapper>
     </S.Wrapper>
   );

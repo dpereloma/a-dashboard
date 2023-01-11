@@ -84,7 +84,7 @@ export const TableItems = ({
             paddingTop: '24px',
           }}
         >
-          <Typography variant="h3">{emptyItemsMessage}</Typography>
+          <Typography variant="h4">{emptyItemsMessage}</Typography>
         </Box>
       ) : null}
     </Box>

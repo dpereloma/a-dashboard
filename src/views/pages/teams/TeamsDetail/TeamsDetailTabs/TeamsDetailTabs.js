@@ -59,10 +59,20 @@ export const TeamsDetailTabs = () => {
           disableElevation
           variant="contained"
           size="medium"
-          sx={{ color: 'inherit' }}
+          sx={{ color: 'white' }}
           onClick={() => setOpenInviteModal(true)}
         >
           Invite new members
+        </Button>
+      ) : null}
+      {currentTab === 3 ? (
+        <Button
+          disableElevation
+          variant="contained"
+          size="medium"
+          sx={{ color: 'white' }}
+        >
+          Wallet actions
         </Button>
       ) : null}
     </Box>
