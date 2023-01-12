@@ -16,9 +16,11 @@ export const ItemCardInfo = ({
 }) => {
   return (
     <S.Wrapper>
-      <S.Image color={color} bgColor={bgColor}>
-        {img}
-      </S.Image>
+      {img ? (
+        <S.Image color={color} bgColor={bgColor}>
+          {img}
+        </S.Image>
+      ) : null}
       <S.TextWrapper hasValue={!!value}>
         <Typography variant={titleVariant}>{title}</Typography>
         {value ? <Typography variant={valueVariant}>{value}</Typography> : null}

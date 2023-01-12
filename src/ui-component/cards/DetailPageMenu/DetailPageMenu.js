@@ -6,9 +6,9 @@ import MainCard from '../MainCard';
 
 export const DetailPageMenu = ({ menuItems }) => {
   return (
-    <Box sx={{ width: '300px' }}>
+    <Box sx={{ minWidth: '300px' }}>
       <MainCard
-        sx={{ marginTop: '16px' }}
+        sx={{ marginTop: '16px', position: 'sticky', top: '100px' }}
         contentSX={{ padding: 0, '&:last-child': { padding: 0 } }}
         title="Overview"
       >

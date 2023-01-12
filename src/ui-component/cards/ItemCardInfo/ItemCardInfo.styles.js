@@ -22,5 +22,5 @@ export const TextWrapper = styled(Box)(({ hasValue }) => ({
   display: 'flex',
   alignSelf: 'stretch',
   flexDirection: 'column',
-  justifyContent: hasValue ? 'space-between' : 'center',
+  justifyContent: hasValue ? 'space-around' : 'center',
 }));

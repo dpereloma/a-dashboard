@@ -15,7 +15,7 @@ export const CardItem = styled(Box)(({ theme }) => ({
   display: 'flex',
   gap: theme.spacing(2),
   alignItems: 'center',
-  border: '1px solid black',
+  border: `1px solid ${theme.palette.grey[200]}`,
   borderRadius: theme.spacing(1),
   padding: theme.spacing(3),
   cursor: 'pointer',
