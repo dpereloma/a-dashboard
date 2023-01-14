@@ -1,1 +1,1 @@
-export * from './PhoneForm';
+export { PhoneForm } from './PhoneForm';

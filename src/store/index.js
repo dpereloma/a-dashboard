@@ -2,16 +2,15 @@ import { configureStore } from '@reduxjs/toolkit';
 import customizationReducer from './customizationReducer';
 import { authReducer } from './authSlice';
 import { chargePointsReducer } from './chargePointsSlice';
-
-// ==============================|| REDUX - MAIN STORE ||============================== //
+import { teamsReducer } from './teamsSlice';
 
 const store = configureStore({
-    reducer: {
-        customization: customizationReducer,
-        auth: authReducer,
-        chargePoints: chargePointsReducer
-    }
+  reducer: {
+    customization: customizationReducer,
+    auth: authReducer,
+    chargePoints: chargePointsReducer,
+    teams: teamsReducer,
+  },
 });
-const persister = 'Free';
 
-export { store, persister };
+export { store };

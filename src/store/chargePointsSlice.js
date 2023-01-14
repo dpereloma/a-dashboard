@@ -1,19 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+// eslint-disable-next-line max-len
 import { chargePointsItems } from 'views/pages/charge-points/ChargePoints/ChargePoints.utils';
 
 export const initialState = {
-    chargePoints: chargePointsItems
+  chargePoints: chargePointsItems,
 };
 
 export const chargePointsSlice = createSlice({
-    name: 'chargePoints',
-    initialState,
-    reducers: {
-        addChargePoint: (state, action) => {
-            state.chargePoints = [...state.chargePoints, action.payload];
-        }
-    }
+  name: 'chargePoints',
+  initialState,
+  reducers: {
+    addChargePoint: (state, action) => {
+      state.chargePoints = [...state.chargePoints, action.payload];
+    },
+  },
 });
 
 export const chargePointsActions = chargePointsSlice.actions;
