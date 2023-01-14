@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 import * as S from './ItemCardInfo.styles';
 
@@ -13,6 +13,7 @@ export const ItemCardInfo = ({
   valueVariant = 'body2',
   bgColor,
   color,
+  additionalValue,
 }) => {
   return (
     <S.Wrapper>
@@ -23,7 +24,19 @@ export const ItemCardInfo = ({
       ) : null}
       <S.TextWrapper hasValue={!!value}>
         <Typography variant={titleVariant}>{title}</Typography>
-        {value ? <Typography variant={valueVariant}>{value}</Typography> : null}
+        {value ? (
+          <Box sx={{ display: 'flex', gap: '16px' }}>
+            <Typography variant={valueVariant}>{value}</Typography>
+            {additionalValue ? (
+              <Typography
+                sx={{ color: color ?? undefined }}
+                variant={titleVariant}
+              >
+                {additionalValue}
+              </Typography>
+            ) : null}
+          </Box>
+        ) : null}
       </S.TextWrapper>
     </S.Wrapper>
   );
