@@ -1,16 +1,10 @@
 import { useFormik } from 'formik';
 import PropTypes from 'prop-types';
 
-import {
-  DialogContent,
-  DialogActions,
-  Box,
-  Button,
-  Typography,
-} from '@mui/material';
+import { DialogContent, DialogActions, Box, Typography } from '@mui/material';
 import { EdgeDialog } from 'ui-component/EdgeDialog';
-
 import { CreateEnableInvoiceForm } from './CreateEnableInvoiceForm';
+import { Button } from 'ui-component/buttons/Button';
 
 export const CreateEnableInvoice = ({ isOpen, onClose, setInvoices }) => {
   const formik = useFormik({
@@ -50,15 +44,7 @@ export const CreateEnableInvoice = ({ isOpen, onClose, setInvoices }) => {
           </Box>
         </DialogContent>
         <DialogActions>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            fullWidth
-            disabled={false}
-          >
-            Create
-          </Button>
+          <Button type="submit" fullWidth text="Create" />
         </DialogActions>
       </form>
     </EdgeDialog>

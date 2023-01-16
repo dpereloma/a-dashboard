@@ -1,7 +1,6 @@
 import { useTheme, styled } from '@mui/material/styles';
 import {
   Avatar,
-  Button,
   Card,
   CardContent,
   Chip,
@@ -15,6 +14,7 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
+import { Button } from 'ui-component/buttons/Button';
 
 import {
   IconBrandTelegram,
@@ -205,12 +205,9 @@ const NotificationList = () => {
             <Grid container>
               <Grid item>
                 <Button
-                  variant="contained"
-                  disableElevation
+                  text="Mail"
                   endIcon={<IconBrandTelegram stroke={1.5} size="1.3rem" />}
-                >
-                  Mail
-                </Button>
+                />
               </Grid>
             </Grid>
           </Grid>

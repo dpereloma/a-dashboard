@@ -5,53 +5,26 @@ import { useSelector } from 'react-redux';
 
 import {
   Box,
-  Button,
-  Divider,
   MenuItem,
   Select,
   Switch,
   TextField,
   Typography,
 } from '@mui/material';
-import { DropdownMenu } from 'ui-component/extended/DropdownMenu';
 import MainCard from 'ui-component/cards/MainCard';
+import { ItemCardInfo } from 'ui-component/cards/ItemCardInfo';
+import { DetailPageMenu } from '../../../../ui-component/cards/DetailPageMenu';
+import { CreateSubscriptionModal } from '../../teams/TeamsDetail/TeamsDetailTabs/SettingsTab/CreateSubscriptionModal';
+import { Button } from 'ui-component/buttons/Button';
 
 import {
-  Done,
-  PowerOutlined,
-  ShowChart,
   ArrowBackIos,
-  ExpandMore,
-  TrendingUp,
   TextSnippet,
   CompareArrows,
   PersonAddAlt1,
   KeyboardArrowRight,
 } from '@mui/icons-material';
-import { ItemCardInfo } from 'ui-component/cards/ItemCardInfo';
-import { TeamWalletTransactionsTable } from '../../teams/TeamsDetail/TeamsDetailTabs/TeamWalletTab/TeamWalletTransactionsTable';
-import { TeamWalletInvoicesTable } from '../../teams/TeamsDetail/TeamsDetailTabs/TeamWalletTab/TeamWalletInvoicesTable';
-import { TeamWalletChargeKeysTable } from '../../teams/TeamsDetail/TeamsDetailTabs/TeamWalletTab/TeamWalletChargeKeysTable';
-import { DetailPageMenu } from '../../../../ui-component/cards/DetailPageMenu';
-import { CreateEnableInvoice } from '../../teams/TeamsDetail/TeamsDetailTabs/TeamWalletTab/CreateEnableInvoice';
-import { CreateChargeKeyModal } from '../../teams/TeamsDetail/TeamsDetailTabs/TeamWalletTab/CreateChargeKeyModal';
-import { CreateSubscriptionModal } from '../../teams/TeamsDetail/TeamsDetailTabs/SettingsTab/CreateSubscriptionModal';
 import * as S from '../../teams/TeamsDetail/TeamsDetailTabs/InviteMemberModal/InviteMemberModal.styles';
-
-const status = [
-  {
-    value: 'today',
-    label: 'Today',
-  },
-  {
-    value: 'month',
-    label: 'This Month',
-  },
-  {
-    value: 'year',
-    label: 'This Year',
-  },
-];
 
 const ChargingSitesDetail = () => {
   const { id } = useParams();
@@ -326,14 +299,7 @@ const ChargingSitesDetail = () => {
                 </Box>
               </Box>
             </Box>
-            <Button
-              disableElevation
-              variant="contained"
-              size="large"
-              sx={{ color: 'white', marginLeft: 'auto' }}
-            >
-              Save changes
-            </Button>
+            <Button size="large" text="Savr changes" />
           </MainCard>
           <MainCard
             sx={{ width: '100%', marginTop: '16px' }}
@@ -347,14 +313,10 @@ const ChargingSitesDetail = () => {
             }
             secondary={
               <Button
-                disableElevation
-                variant="contained"
                 size="large"
                 onClick={() => setOpenApplySubscription(true)}
-                sx={{ color: 'white' }}
-              >
-                Apply subscription
-              </Button>
+                text="Apply subscription"
+              />
             }
           />
           <MainCard
@@ -404,14 +366,7 @@ const ChargingSitesDetail = () => {
                         <Typography variant="caption">US$0.00/kWh</Typography>
                       </Box>
                       <Box sx={{ marginLeft: 'auto', marginRight: '16px' }}>
-                        <Button
-                          disableElevation
-                          variant="contained"
-                          size="large"
-                          sx={{ color: 'white', marginLeft: 'auto' }}
-                        >
-                          Edit
-                        </Button>
+                        <Button size="large" text="Edit" />
                       </Box>
                     </S.CardItem>
                   </Box>
@@ -433,14 +388,7 @@ const ChargingSitesDetail = () => {
                         </Typography>
                       </Box>
                       <Box sx={{ marginLeft: 'auto', marginRight: '16px' }}>
-                        <Button
-                          disableElevation
-                          variant="contained"
-                          size="large"
-                          sx={{ color: 'white', marginLeft: 'auto' }}
-                        >
-                          Edit
-                        </Button>
+                        <Button size="large" text="Edit" />
                       </Box>
                     </S.CardItem>
                   </Box>
@@ -458,14 +406,7 @@ const ChargingSitesDetail = () => {
                         <Typography variant="subtitle1">Cost</Typography>
                       </Box>
                       <Box sx={{ marginLeft: 'auto', marginRight: '16px' }}>
-                        <Button
-                          disableElevation
-                          variant="contained"
-                          size="large"
-                          sx={{ color: 'white', marginLeft: 'auto' }}
-                        >
-                          Enable
-                        </Button>
+                        <Button size="large" text="Enable" />
                       </Box>
                     </S.CardItem>
                   </Box>
@@ -681,14 +622,7 @@ const ChargingSitesDetail = () => {
                 </Box>
               </Box>
             </Box>
-            <Button
-              disableElevation
-              variant="contained"
-              size="large"
-              sx={{ color: 'white', marginLeft: 'auto' }}
-            >
-              Update integration
-            </Button>
+            <Button size="large" text="Update integration" />
           </MainCard>
         </Box>
         <DetailPageMenu menuItems={menuItems} />

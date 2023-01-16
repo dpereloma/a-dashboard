@@ -2,7 +2,6 @@ import {
   styled,
   Typography,
   Box,
-  Button,
   DialogContent,
   DialogActions,
 } from '@mui/material';
@@ -12,6 +11,7 @@ import { CountriesList } from './CountriesList';
 import { SearchInput } from 'ui-component/inputs';
 import { Scrollbar } from 'ui-component/Scrollbar';
 import { EdgeDialog } from 'ui-component/EdgeDialog';
+import { Button } from 'ui-component/buttons/Button';
 
 import { useCountrySelect } from './useCountrySelect';
 import { useDeviceIsDown } from 'hooks/useDeviceIsDown';
@@ -106,14 +106,11 @@ export const CountriesDialog = ({
       {!isMobile && (
         <DialogActions>
           <Button
-            variant="contained"
-            color="primary"
             fullWidth
             disabled={!isDirty}
             onClick={handleSet}
-          >
-            Выбрать
-          </Button>
+            text="Select"
+          />
         </DialogActions>
       )}
     </EdgeDialog>

@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 
-import { Button } from '@mui/material';
 import MainCard from 'ui-component/cards/MainCard';
 import { SearchInput } from 'ui-component/inputs';
+import { ChargingSitesTable } from './ChargingSitesTable';
+import { ChargingSitesModal } from './ChargingSitesModal';
+import { Button } from 'ui-component/buttons/Button';
 
 import * as S from './ChargingSites.styles';
 import { useChargingSites } from './ChargingSites.utils';
-import { ChargingSitesTable } from './ChargingSitesTable';
-import { CreateChargingSiteForm } from './ChargingSitesModal/CreateChargingSiteForm';
-import { ChargingSitesModal } from './ChargingSitesModal';
 
 const ChargingSites = () => {
   const [openCreateModal, setOpenCreateModal] = useState(false);
@@ -17,15 +16,7 @@ const ChargingSites = () => {
     useChargingSites();
 
   const renderHeaderAction = () => (
-    <Button
-      disableElevation
-      variant="contained"
-      size="medium"
-      sx={{ color: 'white' }}
-      onClick={() => setOpenCreateModal(true)}
-    >
-      Add new
-    </Button>
+    <Button text="Add new" onClick={() => setOpenCreateModal(true)} />
   );
 
   const renderAction = () => (

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { useTheme } from '@mui/styles';
+
 import {
   Box,
-  Button,
   Divider,
   MenuItem,
   Select,
@@ -9,8 +10,13 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import MainCard from '../../../../../../ui-component/cards/MainCard';
-import { ItemCardInfo } from '../../../../../../ui-component/cards/ItemCardInfo';
+import MainCard from '/ui-component/cards/MainCard';
+import { ItemCardInfo } from 'ui-component/cards/ItemCardInfo';
+import { DetailPageMenu } from 'ui-component/cards/DetailPageMenu';
+import { Chip } from 'ui-component/Chip';
+import { CreateSubscriptionModal } from './CreateSubscriptionModal';
+import { Button } from 'ui-component/buttons/Button';
+
 import {
   CheckCircleOutlined,
   Clear,
@@ -19,10 +25,6 @@ import {
   TextSnippet,
   TrendingUp,
 } from '@mui/icons-material';
-import { DetailPageMenu } from '../../../../../../ui-component/cards/DetailPageMenu';
-import { useTheme } from '@mui/styles';
-import { Chip } from '../../../../../../ui-component/Chip';
-import { CreateSubscriptionModal } from './CreateSubscriptionModal';
 
 export const SettingsTab = ({ team }) => {
   const theme = useTheme();
@@ -260,14 +262,7 @@ export const SettingsTab = ({ team }) => {
                 }}
                 type="text"
               />
-              <Button
-                disableElevation
-                variant="contained"
-                size="large"
-                sx={{ color: 'white', marginLeft: 'auto' }}
-              >
-                Save changes
-              </Button>
+              <Button size="large" text="Save changes" />
             </Box>
           </Box>
         </MainCard>
@@ -281,16 +276,7 @@ export const SettingsTab = ({ team }) => {
               img={<TextSnippet />}
             />
           }
-          secondary={
-            <Button
-              disableElevation
-              variant="contained"
-              size="large"
-              sx={{ color: 'white' }}
-            >
-              Add new
-            </Button>
-          }
+          secondary={<Button size="large" text="Add new" />}
         />
         <MainCard
           sx={{ width: '100%', marginTop: '16px' }}
@@ -512,14 +498,11 @@ export const SettingsTab = ({ team }) => {
           }
           secondary={
             <Button
-              disableElevation
-              variant="contained"
               size="large"
+              fullWidth
+              text="Apply subscription"
               onClick={() => setOpenApplySubscription(true)}
-              sx={{ color: 'white' }}
-            >
-              Apply subscription
-            </Button>
+            />
           }
         />
         <MainCard
@@ -586,14 +569,7 @@ export const SettingsTab = ({ team }) => {
                 >
                   <MenuItem value={0}>Home</MenuItem>
                 </Select>
-                <Button
-                  disableElevation
-                  variant="contained"
-                  size="large"
-                  sx={{ color: 'white', marginLeft: 'auto' }}
-                >
-                  Save theme
-                </Button>
+                <Button size="large" text="Save theme" />
               </Box>
               <Box
                 sx={{

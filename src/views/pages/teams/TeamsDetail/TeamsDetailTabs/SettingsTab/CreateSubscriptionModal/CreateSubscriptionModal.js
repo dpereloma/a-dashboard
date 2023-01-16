@@ -1,16 +1,14 @@
-import { useFormik } from 'formik';
 import PropTypes from 'prop-types';
 
 import {
   DialogContent,
   DialogActions,
   Box,
-  Button,
-  Typography,
   MenuItem,
   Select,
 } from '@mui/material';
 import { EdgeDialog } from 'ui-component/EdgeDialog';
+import { Button } from 'ui-component/buttons/Button';
 
 export const CreateSubscriptionModal = ({ isOpen, onClose, setPlan }) => {
   const items = [
@@ -48,15 +46,7 @@ export const CreateSubscriptionModal = ({ isOpen, onClose, setPlan }) => {
         </Box>
       </DialogContent>
       <DialogActions>
-        <Button
-          variant="contained"
-          onClick={() => onClose()}
-          color="primary"
-          fullWidth
-          disabled={false}
-        >
-          Apply subscription
-        </Button>
+        <Button onClick={() => onClose()} fullWidth text="Apply subscription" />
       </DialogActions>
     </EdgeDialog>
   );

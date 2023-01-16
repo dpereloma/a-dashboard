@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-import { Button } from '@mui/material';
 import MainCard from 'ui-component/cards/MainCard';
 import { SearchInput } from 'ui-component/inputs';
 import { TeamsTable } from './TeamsTable';
 import { CreateTeamModal } from './CreateTeamModal';
+import { Button } from 'ui-component/buttons/Button';
 
 import { useTeams } from './Teams.utils';
 import * as S from './Teams.styles';
@@ -15,15 +15,7 @@ const Teams = () => {
   const { teams, searchValue, onSearchChange, onSearchClear } = useTeams();
 
   const renderHeaderAction = () => (
-    <Button
-      disableElevation
-      variant="contained"
-      size="medium"
-      sx={{ color: 'white' }}
-      onClick={() => setOpenCreateModal(true)}
-    >
-      Add team
-    </Button>
+    <Button onClick={() => setOpenCreateModal(true)} text="Add team" />
   );
 
   const renderAction = () => (

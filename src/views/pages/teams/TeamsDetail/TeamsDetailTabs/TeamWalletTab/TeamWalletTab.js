@@ -1,15 +1,17 @@
 import React from 'react';
+import { useTheme } from '@mui/styles';
+
 import { ItemCardInfo } from 'ui-component/cards/ItemCardInfo';
 import { CompareArrows, TextSnippet, TrendingUp } from '@mui/icons-material';
 import MainCard from 'ui-component/cards/MainCard';
-import { Box, Button, TextField } from '@mui/material';
+import { Box } from '@mui/material';
 import { TeamWalletInvoicesTable } from './TeamWalletInvoicesTable';
 import { TeamWalletChargeKeysTable } from './TeamWalletChargeKeysTable';
 import { DetailPageMenu } from 'ui-component/cards/DetailPageMenu';
 import { TeamWalletTransactionsTable } from './TeamWalletTransactionsTable';
-import { useTheme } from '@mui/styles';
 import { CreateEnableInvoice } from './CreateEnableInvoice';
 import { CreateChargeKeyModal } from './CreateChargeKeyModal';
+import { Button } from 'ui-component/buttons/Button';
 
 export const TeamWalletTab = () => {
   const theme = useTheme();
@@ -61,14 +63,10 @@ export const TeamWalletTab = () => {
           title={<ItemCardInfo title="Invoices" img={<TextSnippet />} />}
           secondary={
             <Button
-              disableElevation
-              variant="contained"
               size="large"
               onClick={() => setOpenEnableInvoice(true)}
-              sx={{ color: 'white' }}
-            >
-              Enable invoicing
-            </Button>
+              text="Enable invoicing"
+            />
           }
         >
           <TeamWalletInvoicesTable invoices={invoices} />
@@ -85,14 +83,10 @@ export const TeamWalletTab = () => {
           }
           secondary={
             <Button
-              disableElevation
-              variant="contained"
               size="large"
               onClick={() => setOpenPairChargeKey(true)}
-              sx={{ color: 'white' }}
-            >
-              Pair change key
-            </Button>
+              text="Pair change key"
+            />
           }
         >
           <TeamWalletChargeKeysTable chargeKeys={chargeKeys} />

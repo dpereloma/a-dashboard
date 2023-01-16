@@ -1,15 +1,9 @@
 import { useFormik } from 'formik';
 import PropTypes from 'prop-types';
 
-import {
-  DialogContent,
-  DialogActions,
-  Box,
-  Button,
-  Typography,
-} from '@mui/material';
+import { DialogContent, DialogActions, Box } from '@mui/material';
 import { EdgeDialog } from 'ui-component/EdgeDialog';
-
+import { Button } from 'ui-component/buttons/Button';
 import { CreateChargeKeyForm } from './CreateChargeKeyForm';
 
 export const CreateChargeKeyModal = ({ isOpen, onClose, setChargeKeys }) => {
@@ -41,15 +35,7 @@ export const CreateChargeKeyModal = ({ isOpen, onClose, setChargeKeys }) => {
           </Box>
         </DialogContent>
         <DialogActions>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            fullWidth
-            disabled={false}
-          >
-            Create
-          </Button>
+          <Button type="submit" fullWidth text="Create" />
         </DialogActions>
       </form>
     </EdgeDialog>

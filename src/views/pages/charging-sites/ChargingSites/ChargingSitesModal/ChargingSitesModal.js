@@ -2,11 +2,12 @@ import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { DialogContent, DialogActions, Box, Button } from '@mui/material';
+import { DialogContent, DialogActions, Box } from '@mui/material';
 import { EdgeDialog } from 'ui-component/EdgeDialog';
-
+import { Button } from 'ui-component/buttons/Button';
 import { CreateChargingSiteForm } from './CreateChargingSiteForm';
-import { chargingSitesActions } from '../../../../../store/chargingSItesSlice';
+
+import { chargingSitesActions } from 'store/chargingSItesSlice';
 
 export const ChargingSitesModal = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
@@ -43,15 +44,7 @@ export const ChargingSitesModal = ({ isOpen, onClose }) => {
           </Box>
         </DialogContent>
         <DialogActions>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            fullWidth
-            disabled={false}
-          >
-            Create
-          </Button>
+          <Button type="submit" fullWidth text="Create" />
         </DialogActions>
       </form>
     </EdgeDialog>

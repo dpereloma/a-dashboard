@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Box, Button, Tab, Tabs } from '@mui/material';
+
+import { Box, Tab, Tabs } from '@mui/material';
 import { OverviewTab } from './OverfiewTab';
 import { MembersTab } from './MembersTab';
 import { ChargePointsTab } from './ChargePointsTab';
@@ -7,9 +8,10 @@ import { PriceGroupsTab } from './PriceGroupsTab/PriceGroupsTab';
 import { SchedulesTab } from './SchedulesTab';
 import { SettingsTab } from './SettingsTab';
 import { TeamWalletTab } from './TeamWalletTab';
-import MainCard from '../../../../../ui-component/cards/MainCard';
+import MainCard from 'ui-component/cards/MainCard';
 import { CreateMemberModal } from './MembersTab/CreateMemberModal';
 import { InviteMemberModal } from './InviteMemberModal';
+import { Button } from 'ui-component/buttons/Button';
 
 export const TeamsDetailTabs = () => {
   const [currentTab, setCurrentTab] = useState(0);
@@ -56,25 +58,11 @@ export const TeamsDetailTabs = () => {
       </Tabs>
       {currentTab === 2 ? (
         <Button
-          disableElevation
-          variant="contained"
-          size="medium"
-          sx={{ color: 'white' }}
+          text="Invite new members"
           onClick={() => setOpenInviteModal(true)}
-        >
-          Invite new members
-        </Button>
+        />
       ) : null}
-      {currentTab === 3 ? (
-        <Button
-          disableElevation
-          variant="contained"
-          size="medium"
-          sx={{ color: 'white' }}
-        >
-          Wallet actions
-        </Button>
-      ) : null}
+      {currentTab === 3 ? <Button text="Wallet actions" /> : null}
     </Box>
   );
 
