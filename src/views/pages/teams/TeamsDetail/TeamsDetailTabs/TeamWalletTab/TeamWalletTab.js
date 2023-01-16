@@ -8,10 +8,16 @@ import { TeamWalletChargeKeysTable } from './TeamWalletChargeKeysTable';
 import { DetailPageMenu } from 'ui-component/cards/DetailPageMenu';
 import { TeamWalletTransactionsTable } from './TeamWalletTransactionsTable';
 import { useTheme } from '@mui/styles';
+import { CreateEnableInvoice } from './CreateEnableInvoice';
+import { CreateChargeKeyModal } from './CreateChargeKeyModal';
 
 export const TeamWalletTab = () => {
   const theme = useTheme();
   const [value, setValue] = React.useState(null);
+  const [openEnableInvoice, setOpenEnableInvoice] = React.useState(false);
+  const [invoices, setInvoices] = React.useState([]);
+  const [openPairChargeKey, setOpenPairChargeKey] = React.useState(false);
+  const [chargeKeys, setChargeKeys] = React.useState([]);
 
   const handleChange = (newValue) => {
     setValue(newValue);
@@ -42,7 +48,7 @@ export const TeamWalletTab = () => {
             <ItemCardInfo
               bgColor={theme.palette.success.light}
               color={theme.palette.success.main}
-              title="Invoices"
+              title="Transactions"
               img={<TrendingUp />}
             />
           }
@@ -58,13 +64,14 @@ export const TeamWalletTab = () => {
               disableElevation
               variant="contained"
               size="large"
+              onClick={() => setOpenEnableInvoice(true)}
               sx={{ color: 'white' }}
             >
               Enable invoicing
             </Button>
           }
         >
-          <TeamWalletInvoicesTable invoices={[]} />
+          <TeamWalletInvoicesTable invoices={invoices} />
         </MainCard>
         <MainCard
           sx={{ width: '100%', marginTop: '16px' }}
@@ -81,16 +88,27 @@ export const TeamWalletTab = () => {
               disableElevation
               variant="contained"
               size="large"
+              onClick={() => setOpenPairChargeKey(true)}
               sx={{ color: 'white' }}
             >
               Pair change key
             </Button>
           }
         >
-          <TeamWalletChargeKeysTable chargeKeys={[]} />
+          <TeamWalletChargeKeysTable chargeKeys={chargeKeys} />
         </MainCard>
       </Box>
       <DetailPageMenu menuItems={menuItems} />
+      <CreateEnableInvoice
+        isOpen={openEnableInvoice}
+        onClose={() => setOpenEnableInvoice(false)}
+        setInvoices={setInvoices}
+      />
+      <CreateChargeKeyModal
+        isOpen={openPairChargeKey}
+        onClose={() => setOpenPairChargeKey(false)}
+        setChargeKeys={setChargeKeys}
+      />
     </Box>
   );
 };

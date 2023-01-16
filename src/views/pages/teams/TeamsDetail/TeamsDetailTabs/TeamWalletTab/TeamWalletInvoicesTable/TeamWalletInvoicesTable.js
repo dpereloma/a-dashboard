@@ -28,8 +28,8 @@ export const TeamWalletInvoicesTable = ({ invoices }) => {
           </Box>
         </Box>
       ),
-      amount: invoice.amount,
-      state: invoice.state,
+      amount: invoice.amount ?? 0,
+      state: invoice.state ?? '-',
     };
 
     return Object.entries(columnNames)?.map(([k, v]) => (

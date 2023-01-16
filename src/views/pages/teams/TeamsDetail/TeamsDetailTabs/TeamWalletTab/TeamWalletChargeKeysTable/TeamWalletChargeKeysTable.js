@@ -28,8 +28,8 @@ export const TeamWalletChargeKeysTable = ({ chargeKeys }) => {
           </Box>
         </Box>
       ),
-      owner: chargeKey.owner,
-      lastUpdatedAt: chargeKey.lastUpdatedAt,
+      owner: chargeKey.ownership,
+      lastUpdatedAt: chargeKey.lastUpdatedAt ?? '-',
     };
 
     return Object.entries(columnNames)?.map(([k, v]) => (

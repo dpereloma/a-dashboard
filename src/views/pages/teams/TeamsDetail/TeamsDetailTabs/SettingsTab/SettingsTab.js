@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Button,
@@ -22,9 +22,14 @@ import {
 import { DetailPageMenu } from '../../../../../../ui-component/cards/DetailPageMenu';
 import { useTheme } from '@mui/styles';
 import { Chip } from '../../../../../../ui-component/Chip';
+import { CreateSubscriptionModal } from './CreateSubscriptionModal';
 
 export const SettingsTab = ({ team }) => {
   const theme = useTheme();
+
+  const [openApplySubscription, setOpenApplySubscription] = useState(false);
+  const [plan, setPlan] = React.useState('');
+  console.log(plan);
 
   const menuItems = [
     {
@@ -500,7 +505,7 @@ export const SettingsTab = ({ team }) => {
           content={false}
           title={
             <ItemCardInfo
-              title="No subscriptions"
+              title={plan || 'No subscriptions'}
               value="Next purchase: -"
               img={<TextSnippet />}
             />
@@ -510,6 +515,7 @@ export const SettingsTab = ({ team }) => {
               disableElevation
               variant="contained"
               size="large"
+              onClick={() => setOpenApplySubscription(true)}
               sx={{ color: 'white' }}
             >
               Apply subscription
@@ -612,6 +618,11 @@ export const SettingsTab = ({ team }) => {
         </MainCard>
       </Box>
       <DetailPageMenu menuItems={menuItems} />
+      <CreateSubscriptionModal
+        isOpen={openApplySubscription}
+        onClose={() => setOpenApplySubscription(false)}
+        setPlan={setPlan}
+      />
     </Box>
   );
 };

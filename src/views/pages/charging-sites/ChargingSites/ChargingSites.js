@@ -3,16 +3,18 @@ import React, { useState } from 'react';
 import { Button } from '@mui/material';
 import MainCard from 'ui-component/cards/MainCard';
 import { SearchInput } from 'ui-component/inputs';
-import { TeamsTable } from './TeamsTable';
-import { CreateTeamModal } from './CreateTeamModal';
 
-import { useTeams } from './Teams.utils';
-import * as S from './Teams.styles';
+import * as S from './ChargingSites.styles';
+import { useChargingSites } from './ChargingSites.utils';
+import { ChargingSitesTable } from './ChargingSitesTable';
+import { CreateChargingSiteForm } from './ChargingSitesModal/CreateChargingSiteForm';
+import { ChargingSitesModal } from './ChargingSitesModal';
 
-const Teams = () => {
+const ChargingSites = () => {
   const [openCreateModal, setOpenCreateModal] = useState(false);
 
-  const { teams, searchValue, onSearchChange, onSearchClear } = useTeams();
+  const { chargingSites, searchValue, onSearchChange, onSearchClear } =
+    useChargingSites();
 
   const renderHeaderAction = () => (
     <Button
@@ -22,7 +24,7 @@ const Teams = () => {
       sx={{ color: 'white' }}
       onClick={() => setOpenCreateModal(true)}
     >
-      Add team
+      Add new
     </Button>
   );
 
@@ -30,8 +32,8 @@ const Teams = () => {
     <S.ActionsWrapper>
       <SearchInput
         value={searchValue}
-        placeholder="Поиск"
-        clearBtnText="Отменить"
+        placeholder="Search"
+        clearBtnText="Cancel"
         onChange={onSearchChange}
         onClear={onSearchClear}
       />
@@ -41,7 +43,7 @@ const Teams = () => {
   return (
     <>
       <MainCard
-        title="Teams"
+        title="Charging sites"
         secondary={renderHeaderAction()}
         content={false}
       />
@@ -51,9 +53,9 @@ const Teams = () => {
         title="Your teams"
         secondary={renderAction()}
       >
-        <TeamsTable teams={teams} />
+        <ChargingSitesTable chargingSites={chargingSites} />
       </MainCard>
-      <CreateTeamModal
+      <ChargingSitesModal
         isOpen={openCreateModal}
         onClose={() => setOpenCreateModal(false)}
       />
@@ -61,4 +63,4 @@ const Teams = () => {
   );
 };
 
-export default Teams;
+export default ChargingSites;
