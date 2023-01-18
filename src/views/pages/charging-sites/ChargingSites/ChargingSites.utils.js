@@ -46,7 +46,6 @@ export const useChargingSites = () => {
   const chargingSites = useSelector(
     (state) => state.chargingSites.chargingSites,
   );
-  console.log(chargingSites);
 
   const [searchValue, setSearchValue] = useState('');
 

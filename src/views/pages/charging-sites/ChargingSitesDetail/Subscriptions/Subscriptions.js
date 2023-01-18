@@ -5,7 +5,7 @@ import { Button } from 'ui-component/buttons/Button';
 import MainCard from 'ui-component/cards/MainCard';
 import { CreateSubscriptionModal } from '../../../teams/TeamsDetail/TeamsDetailTabs/SettingsTab/CreateSubscriptionModal';
 
-import { TextSnippet } from '@mui/icons-material';
+import { WorkspacePremium } from '@mui/icons-material';
 
 export const Subscriptions = () => {
   const [openApplySubscription, setOpenApplySubscription] = useState(false);
@@ -20,7 +20,7 @@ export const Subscriptions = () => {
           <ItemCardInfo
             title={plan || 'No subscriptions'}
             value="Next purchase: -"
-            img={<TextSnippet />}
+            img={<WorkspacePremium />}
           />
         }
         secondary={

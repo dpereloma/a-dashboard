@@ -9,10 +9,15 @@ import * as S from '../../../teams/TeamsDetail/TeamsDetailTabs/InviteMemberModal
 import {
   KeyboardArrowRight,
   PersonAddAlt1,
-  TextSnippet,
+  CompareArrows,
 } from '@mui/icons-material';
+import { useSelector } from 'react-redux';
 
 export const Overview = () => {
+  const chargingSites = useSelector(
+    (state) => state.chargingSites.chargingSites,
+  );
+
   const chargeTypeItems = [
     {
       value: 'ac',
@@ -38,7 +43,7 @@ export const Overview = () => {
   return (
     <MainCard
       sx={{ width: '100%', marginTop: '16px' }}
-      title={<ItemCardInfo title="Settings" img={<TextSnippet />} />}
+      title={<ItemCardInfo title="Settings" img={<CompareArrows />} />}
     >
       <Box sx={{ display: 'flex' }}>
         <Typography sx={{ minWidth: '150px' }} variant="subtitle1">

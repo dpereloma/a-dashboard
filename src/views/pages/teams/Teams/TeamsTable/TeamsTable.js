@@ -7,10 +7,14 @@ import { Avatar, Box, MenuItem, TableCell, Typography } from '@mui/material';
 import { TableItems } from 'ui-component/extended/TableItems';
 
 import { teamsActions } from 'store/teamsSlice';
+import { HighlightOff, KeyboardTab, Settings } from '@mui/icons-material';
+import { useTheme } from '@mui/styles';
+import { Chip } from '../../../../../ui-component/Chip';
 
 export const TeamsTable = ({ teams }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const theme = useTheme();
 
   const renderTableHeader = () => {
     const columnNames = {
@@ -37,7 +41,7 @@ export const TeamsTable = ({ teams }) => {
           </Box>
         </Box>
       ),
-      plan: team.plan,
+      plan: <Chip text={team.plan} />,
       members: `${team.members} members`,
       chargePoints: `${team.chargePoints} charge points`,
       wallet: `$${team.wallet}`,
@@ -51,10 +55,21 @@ export const TeamsTable = ({ teams }) => {
   const renderAction = (team) => (
     <>
       <MenuItem onClick={() => navigate(`/teams/${team.id}`)}>
+        <KeyboardTab fontSize="small" sx={{ marginRight: '8px' }} />
         Go to team
       </MenuItem>
+      <MenuItem onClick={() => navigate(`/teams/${team.id}`)}>
+        <Settings fontSize="small" sx={{ marginRight: '8px' }} />
+        Team settings
+      </MenuItem>
       <MenuItem onClick={() => dispatch(teamsActions.removeTeam(team.id))}>
-        Delete team
+        <HighlightOff
+          fontSize="small"
+          sx={{ fill: theme.palette.error.main, marginRight: '8px' }}
+        />
+        <Typography sx={{ color: theme.palette.error.main }}>
+          Delete team
+        </Typography>
       </MenuItem>
     </>
   );

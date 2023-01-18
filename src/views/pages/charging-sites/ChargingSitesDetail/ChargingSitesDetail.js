@@ -11,7 +11,15 @@ import { Subscriptions } from './Subscriptions';
 import { ChargePointFunctionalities } from './ChargePointFunctionalities';
 import { Connection } from './Connection';
 
-import { ArrowBackIos, TextSnippet, CompareArrows } from '@mui/icons-material';
+import {
+  ArrowBackIos,
+  CompareArrows,
+  Settings,
+  Power,
+  WorkspacePremium,
+  Timeline,
+  RocketLaunch,
+} from '@mui/icons-material';
 
 const ChargingSitesDetail = () => {
   const { id } = useParams();
@@ -27,27 +35,27 @@ const ChargingSitesDetail = () => {
       text: 'Overview',
     },
     {
-      icon: <TextSnippet />,
+      icon: <Settings />,
       text: 'Charge point settings',
     },
     {
-      icon: <TextSnippet />,
+      icon: <Power />,
       text: 'Charge sessions',
     },
     {
-      icon: <TextSnippet />,
+      icon: <WorkspacePremium />,
       text: 'Subscriptions',
     },
     {
-      icon: <TextSnippet />,
+      icon: <RocketLaunch />,
       text: 'Charge point functionalities',
     },
     {
-      icon: <TextSnippet />,
+      icon: <Timeline />,
       text: 'Connection',
     },
     {
-      icon: <TextSnippet />,
+      icon: <Timeline />,
       text: 'Deeplink',
     },
   ];

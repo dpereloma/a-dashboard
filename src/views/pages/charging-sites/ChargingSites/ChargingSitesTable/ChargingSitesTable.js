@@ -7,10 +7,13 @@ import { Avatar, Box, MenuItem, TableCell, Typography } from '@mui/material';
 import { TableItems } from 'ui-component/extended/TableItems';
 import { chargingSitesActions } from '../../../../../store/chargingSItesSlice';
 import { Chip } from '../../../../../ui-component/Chip';
+import { HighlightOff, KeyboardTab, Place } from '@mui/icons-material';
+import { useTheme } from '@mui/styles';
 
 export const ChargingSitesTable = ({ chargingSites }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const theme = useTheme();
 
   const stateVariant = {
     available: 'success',
@@ -35,7 +38,9 @@ export const ChargingSitesTable = ({ chargingSites }) => {
     const columnNames = {
       name: (
         <Box sx={{ display: 'flex', gap: '16px' }}>
-          <Avatar />
+          <Avatar>
+            <Place />
+          </Avatar>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography variant="body1">{chargingSite.name}</Typography>
             <Typography variant="caption">{chargingSite.address}</Typography>
@@ -43,8 +48,8 @@ export const ChargingSitesTable = ({ chargingSites }) => {
         </Box>
       ),
       team: chargingSite.team,
-      smartQueue: chargingSite.smartQueue,
-      loadBalancing: chargingSite.loadBalancing,
+      smartQueue: <Chip text={chargingSite.smartQueue} />,
+      loadBalancing: <Chip text={chargingSite.loadBalancing} />,
       state: (
         <Chip
           variant={stateVariant[chargingSite.state]}
@@ -61,6 +66,7 @@ export const ChargingSitesTable = ({ chargingSites }) => {
   const renderAction = (chargingSite) => (
     <>
       <MenuItem onClick={() => navigate(`/charging-sites/${chargingSite.id}`)}>
+        <KeyboardTab fontSize="small" sx={{ marginRight: '8px' }} />
         Go to site
       </MenuItem>
       <MenuItem
@@ -68,7 +74,13 @@ export const ChargingSitesTable = ({ chargingSites }) => {
           dispatch(chargingSitesActions.removeChargingSite(chargingSite.id))
         }
       >
-        Delete site
+        <HighlightOff
+          fontSize="small"
+          sx={{ fill: theme.palette.error.main, marginRight: '8px' }}
+        />
+        <Typography sx={{ color: theme.palette.error.main }}>
+          Delete site
+        </Typography>
       </MenuItem>
     </>
   );

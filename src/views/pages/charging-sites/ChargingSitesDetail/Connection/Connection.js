@@ -5,7 +5,7 @@ import { Box, TextField, Typography } from '@mui/material';
 import { Button } from 'ui-component/buttons/Button';
 import MainCard from 'ui-component/cards/MainCard';
 
-import { TextSnippet } from '@mui/icons-material';
+import { Timeline } from '@mui/icons-material';
 
 export const Connection = () => {
   return (
@@ -15,7 +15,7 @@ export const Connection = () => {
         <ItemCardInfo
           title="Connected"
           value="Last connected: -"
-          img={<TextSnippet />}
+          img={<Timeline />}
         />
       }
     >

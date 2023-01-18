@@ -41,7 +41,7 @@ const ChargingSites = () => {
       <MainCard
         sx={{ marginTop: '16px' }}
         contentSX={{ padding: 0 }}
-        title="Your teams"
+        title=" "
         secondary={renderAction()}
       >
         <ChargingSitesTable chargingSites={chargingSites} />

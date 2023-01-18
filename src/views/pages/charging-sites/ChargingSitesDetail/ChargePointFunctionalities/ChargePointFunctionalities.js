@@ -5,7 +5,7 @@ import { Box, Switch, Typography } from '@mui/material';
 import { Button } from 'ui-component/buttons/Button';
 import MainCard from 'ui-component/cards/MainCard';
 
-import { PersonAddAlt1, TextSnippet } from '@mui/icons-material';
+import { PersonAddAlt1, RocketLaunch } from '@mui/icons-material';
 import * as S from '../../../teams/TeamsDetail/TeamsDetailTabs/InviteMemberModal/InviteMemberModal.styles';
 
 export const ChargePointFunctionalities = () => {
@@ -16,7 +16,7 @@ export const ChargePointFunctionalities = () => {
         <ItemCardInfo
           title="Charge point functionalities"
           value="Last updated: -"
-          img={<TextSnippet />}
+          img={<RocketLaunch />}
         />
       }
     >
