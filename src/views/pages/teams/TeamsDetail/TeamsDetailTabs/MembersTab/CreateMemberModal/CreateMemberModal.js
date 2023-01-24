@@ -1,8 +1,9 @@
 import { useFormik } from 'formik';
 import PropTypes from 'prop-types';
 
-import { DialogContent, DialogActions, Box, Button } from '@mui/material';
+import { DialogContent, DialogActions, Box } from '@mui/material';
 import { EdgeDialog } from 'ui-component/EdgeDialog';
+import { Button } from 'ui-component/buttons/Button';
 
 export const CreateMemberModal = ({ isOpen, onClose, setMembers }) => {
   const formik = useFormik({
@@ -36,15 +37,7 @@ export const CreateMemberModal = ({ isOpen, onClose, setMembers }) => {
           </Box>
         </DialogContent>
         <DialogActions>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            fullWidth
-            disabled={false}
-          >
-            Invite
-          </Button>
+          <Button type="submit" fullWidth text="Invite" />
         </DialogActions>
       </form>
     </EdgeDialog>

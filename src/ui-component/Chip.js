@@ -2,12 +2,13 @@ import { useTheme } from '@mui/styles';
 
 import MuiChip from '@mui/material/Chip';
 
-export const Chip = ({ variant, text }) => {
+export const Chip = ({ variant = 'default', text }) => {
   const theme = useTheme();
 
   const chipSX = {
     height: 24,
     padding: '0 6px',
+    borderRadius: '8px',
   };
 
   const chipErrorSX = {
@@ -29,6 +30,7 @@ export const Chip = ({ variant, text }) => {
   };
 
   const sx = {
+    default: chipSX,
     success: chipSuccessSX,
     warning: chipWarningSX,
     error: chipErrorSX,

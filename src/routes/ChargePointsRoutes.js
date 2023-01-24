@@ -12,6 +12,11 @@ const ChargePointsDetail = Loadable(
     import('views/pages/charge-points/ChargePointsDetail/ChargePointsDetail'),
   ),
 );
+const CreateChargePoints = Loadable(
+  lazy(() =>
+    import('views/pages/charge-points/CreateChargePoints/CreateChargePoints'),
+  ),
+);
 
 const ChargePointsRoutes = {
   path: '/',
@@ -24,6 +29,10 @@ const ChargePointsRoutes = {
     {
       path: '/charge-points/:id',
       element: <PrivateRoute element={<ChargePointsDetail />} />,
+    },
+    {
+      path: '/charge-points/create',
+      element: <PrivateRoute element={<CreateChargePoints />} />,
     },
   ],
 };

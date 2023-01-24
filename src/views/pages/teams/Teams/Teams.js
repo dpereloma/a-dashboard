@@ -1,29 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import { Button } from '@mui/material';
 import MainCard from 'ui-component/cards/MainCard';
 import { SearchInput } from 'ui-component/inputs';
 import { TeamsTable } from './TeamsTable';
-import { CreateTeamModal } from './CreateTeamModal';
+import { Button } from 'ui-component/buttons/Button';
 
 import { useTeams } from './Teams.utils';
 import * as S from './Teams.styles';
+import { useNavigate } from 'react-router-dom';
 
 const Teams = () => {
-  const [openCreateModal, setOpenCreateModal] = useState(false);
+  const navigate = useNavigate();
 
   const { teams, searchValue, onSearchChange, onSearchClear } = useTeams();
 
   const renderHeaderAction = () => (
-    <Button
-      disableElevation
-      variant="contained"
-      size="medium"
-      sx={{ color: 'inherit' }}
-      onClick={() => setOpenCreateModal(true)}
-    >
-      Add charge point
-    </Button>
+    <Button onClick={() => navigate('/teams/create')} text="Add team" />
   );
 
   const renderAction = () => (
@@ -53,10 +45,6 @@ const Teams = () => {
       >
         <TeamsTable teams={teams} />
       </MainCard>
-      <CreateTeamModal
-        isOpen={openCreateModal}
-        onClose={() => setOpenCreateModal(false)}
-      />
     </>
   );
 };

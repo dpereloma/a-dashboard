@@ -1,7 +1,8 @@
-import { Typography, Box, Button } from '@mui/material';
+import { Typography, Box } from '@mui/material';
 import { TextButton } from 'ui-component/buttons/TextButton';
 import { LoadingButton } from 'ui-component/buttons/LoadingButton';
 import { CodeInput } from './CodeInput';
+import { Button } from 'ui-component/buttons/Button';
 
 import * as S from './CodeForm.styles';
 import { useCodeForm } from './CodeForm.utils';
@@ -83,9 +84,12 @@ export const CodeForm = ({
         </Box>
         <S.ActionsContainer>
           <Box hidden={!isMobile} ml={-1.5}>
-            <Button variant="text" disabled={loading} onClick={onBack}>
-              Назад
-            </Button>
+            <Button
+              variant="text"
+              disabled={loading}
+              onClick={onBack}
+              text="Back"
+            />
           </Box>
           {!maxAttempsAchieved && (
             <Box flexGrow={1} display="flex" justifyContent="flex-end">

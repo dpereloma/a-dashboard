@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Avatar, Box, TableCell, Typography } from '@mui/material';
+import { Avatar, Box, Switch, TableCell, Typography } from '@mui/material';
 import { TableItems } from 'ui-component/extended/TableItems';
 import { Chip } from 'ui-component/Chip';
 
@@ -9,11 +9,6 @@ import { Helpers } from 'helpers';
 import * as S from './ChargePointsTable.styles';
 
 export const ChargePointsTable = ({ chargePoints }) => {
-  const pointStateVariant = {
-    active: 'success',
-    inactive: 'error',
-  };
-
   const stateVariant = {
     connected: 'success',
     paused: 'warning',
@@ -24,10 +19,9 @@ export const ChargePointsTable = ({ chargePoints }) => {
     const columnNames = {
       point: <TableCell>Charge point</TableCell>,
       chargingSites: <TableCell>Charging sites</TableCell>,
-      pointState: <TableCell>Charge point state</TableCell>,
-      connections: <TableCell>Connection</TableCell>,
       accessibility: <TableCell>Accessibility</TableCell>,
       state: <TableCell>State</TableCell>,
+      pointState: <TableCell>Charge point state</TableCell>,
     };
 
     return Object.entries(columnNames)?.map(([k, v]) => (
@@ -51,19 +45,15 @@ export const ChargePointsTable = ({ chargePoints }) => {
         </Box>
       ),
       chargingSites: chargePoint.site,
-      pointState: (
-        <Chip
-          variant={pointStateVariant[chargePoint.pointState]}
-          text={chargePoint.pointState}
-        />
-      ),
-      connections: chargePoint.connection,
       accessibility: chargePoint.accessibility,
       state: (
         <Chip
           variant={stateVariant[chargePoint.state]}
           text={chargePoint.state}
         />
+      ),
+      pointState: (
+        <Switch checked={chargePoint.pointState === 'active'} size="small" />
       ),
     };
 

@@ -5,7 +5,6 @@ import { useTheme } from '@mui/material/styles';
 import {
   Avatar,
   Box,
-  Button,
   ButtonBase,
   CardActions,
   Chip,
@@ -27,6 +26,7 @@ import Transitions from 'ui-component/extended/Transitions';
 import NotificationList from './NotificationList';
 
 import { IconBell } from '@tabler/icons';
+import { Button } from '../../../../ui-component/buttons/Button';
 
 const status = [
   {
@@ -224,9 +224,7 @@ const NotificationSection = () => {
                   </Grid>
                   <Divider />
                   <CardActions sx={{ p: 1.25, justifyContent: 'center' }}>
-                    <Button size="small" disableElevation>
-                      View All
-                    </Button>
+                    <Button size="small" text="View All" />
                   </CardActions>
                 </MainCard>
               </ClickAwayListener>

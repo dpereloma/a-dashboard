@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import { useTheme } from '@mui/material/styles';
 import {
   Box,
-  Button,
   Checkbox,
   Divider,
   FormControl,
@@ -28,6 +27,7 @@ import { useScriptRef } from 'hooks';
 import Google from 'assets/images/icons/social-google.svg';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import { strengthColor, strengthIndicator } from 'utils/password-strength';
+import { Button } from 'ui-component/buttons/Button';
 
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -71,7 +71,6 @@ const FirebaseRegister = ({ ...others }) => {
         <Grid item xs={12}>
           <AnimateButton>
             <Button
-              variant="outlined"
               fullWidth
               onClick={googleHandler}
               size="large"
@@ -98,7 +97,6 @@ const FirebaseRegister = ({ ...others }) => {
           <Box sx={{ alignItems: 'center', display: 'flex' }}>
             <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
             <Button
-              variant="outlined"
               sx={{
                 cursor: 'unset',
                 m: 2,
@@ -111,9 +109,8 @@ const FirebaseRegister = ({ ...others }) => {
               }}
               disableRipple
               disabled
-            >
-              OR
-            </Button>
+              text="OR"
+            />
             <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
           </Box>
         </Grid>
@@ -317,16 +314,13 @@ const FirebaseRegister = ({ ...others }) => {
             <Box sx={{ mt: 2 }}>
               <AnimateButton>
                 <Button
-                  disableElevation
                   disabled={isSubmitting}
                   fullWidth
                   size="large"
                   type="submit"
-                  variant="contained"
                   color="secondary"
-                >
-                  Sign up
-                </Button>
+                  text="Sign up"
+                />
               </AnimateButton>
             </Box>
           </form>

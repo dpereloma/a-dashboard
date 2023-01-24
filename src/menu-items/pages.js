@@ -52,6 +52,13 @@ const pages = {
           url: '/charge-points',
           target: false,
         },
+        {
+          id: 'charging-sites',
+          title: 'Charging Sites',
+          type: 'item',
+          url: '/charging-sites',
+          target: false,
+        },
       ],
     },
   ],
