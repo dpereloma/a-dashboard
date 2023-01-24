@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { IconButton } from '@mui/material';
 import { FilterList } from '@mui/icons-material';
@@ -7,14 +8,13 @@ import { SearchInput } from 'ui-component/inputs';
 import { DropdownMenu } from 'ui-component/extended/DropdownMenu';
 import { ChargePointsTable } from './ChargePointsTable';
 import { ChargePointsFilter } from './ChargePointsFilter';
-import { CreateChargePointModal } from './CreateChargePointModal';
 import { Button } from 'ui-component/buttons/Button';
 
 import { useChargePoints } from './ChargePoints.utils';
 import * as S from './ChargePoints.styles';
 
 const ChargePoints = () => {
-  const [openCreateModal, setOpenCreateModal] = useState(false);
+  const navigate = useNavigate();
 
   const {
     filteredChargePoints,
@@ -33,15 +33,18 @@ const ChargePoints = () => {
   );
 
   const renderHeaderAction = () => (
-    <Button text="Add charge point" onClick={() => setOpenCreateModal(true)} />
+    <Button
+      text="Add charge point"
+      onClick={() => navigate('/charge-points/create')}
+    />
   );
 
   const renderAction = () => (
     <S.ActionsWrapper>
       <SearchInput
         value={searchValue}
-        placeholder="Поиск"
-        clearBtnText="Отменить"
+        placeholder="Search"
+        clearBtnText="Cancel"
         onChange={onSearchChange}
         onClear={onSearchClear}
       />
@@ -61,15 +64,11 @@ const ChargePoints = () => {
       <MainCard
         sx={{ marginTop: '16px' }}
         contentSX={{ padding: 0 }}
-        title="List Table"
+        title="Charge Points"
         secondary={renderAction()}
       >
         <ChargePointsTable chargePoints={filteredChargePoints} />
       </MainCard>
-      <CreateChargePointModal
-        isOpen={openCreateModal}
-        onClose={() => setOpenCreateModal(false)}
-      />
     </>
   );
 };

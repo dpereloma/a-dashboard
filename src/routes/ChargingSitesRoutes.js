@@ -14,6 +14,11 @@ const ChargingSitesDetail = Loadable(
     ),
   ),
 );
+const CreateChargingSite = Loadable(
+  lazy(() =>
+    import('views/pages/charging-sites/CreateChargingSite/CreateChargingSite'),
+  ),
+);
 
 const ChargingSitesRoutes = {
   path: '/',
@@ -26,6 +31,10 @@ const ChargingSitesRoutes = {
     {
       path: '/charging-sites/:id',
       element: <PrivateRoute element={<ChargingSitesDetail />} />,
+    },
+    {
+      path: '/charging-sites/create',
+      element: <PrivateRoute element={<CreateChargingSite />} />,
     },
   ],
 };

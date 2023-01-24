@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import MainCard from 'ui-component/cards/MainCard';
 import { SearchInput } from 'ui-component/inputs';
 import { ChargingSitesTable } from './ChargingSitesTable';
-import { ChargingSitesModal } from './ChargingSitesModal';
 import { Button } from 'ui-component/buttons/Button';
 
 import * as S from './ChargingSites.styles';
 import { useChargingSites } from './ChargingSites.utils';
 
 const ChargingSites = () => {
-  const [openCreateModal, setOpenCreateModal] = useState(false);
+  const navigate = useNavigate();
 
   const { chargingSites, searchValue, onSearchChange, onSearchClear } =
     useChargingSites();
 
   const renderHeaderAction = () => (
-    <Button text="Add new" onClick={() => setOpenCreateModal(true)} />
+    <Button text="Add new" onClick={() => navigate('/charging-sites/create')} />
   );
 
   const renderAction = () => (
@@ -46,10 +46,6 @@ const ChargingSites = () => {
       >
         <ChargingSitesTable chargingSites={chargingSites} />
       </MainCard>
-      <ChargingSitesModal
-        isOpen={openCreateModal}
-        onClose={() => setOpenCreateModal(false)}
-      />
     </>
   );
 };

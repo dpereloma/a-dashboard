@@ -7,17 +7,43 @@ import {
   connections,
   pointStates,
   states,
-} from '../../ChargePoints.utils';
+} from '../../ChargePoints/ChargePoints.utils';
 import * as S from './CreateChargePointForm.styles';
+import { Button } from '../../../../../ui-component/buttons/Button';
+import { useFormik } from 'formik';
+import { chargePointsActions } from '../../../../../store/chargePointsSlice';
+import { useDispatch } from 'react-redux';
 
-export const CreateChargePointForm = ({ values, handleChange }) => {
+export const CreateChargePointForm = () => {
+  const dispatch = useDispatch();
+
+  const formik = useFormik({
+    enableReinitialize: true,
+    initialValues: {
+      name: '',
+      code: '',
+      site: '',
+      pointState: 'active',
+      connection: 'disconnected',
+      accessibility: 'public',
+      state: 'connected',
+    },
+    onSubmit: (values) => {
+      dispatch(
+        chargePointsActions.addChargePoint({
+          id: Date.now(),
+          ...values,
+        }),
+      );
+    },
+  });
   const renderTextField = (name) => (
     <TextField
       size="small"
       fullWidth
       name={name}
-      value={values[name]}
-      onChange={handleChange}
+      value={formik.values[name]}
+      onChange={formik.handleChange}
       type="text"
     />
   );
@@ -27,8 +53,8 @@ export const CreateChargePointForm = ({ values, handleChange }) => {
       fullWidth
       size="small"
       name={name}
-      value={values[name]}
-      onChange={handleChange}
+      value={formik.values[name]}
+      onChange={formik.handleChange}
       SelectProps={{
         native: true,
       }}
@@ -72,10 +98,15 @@ export const CreateChargePointForm = ({ values, handleChange }) => {
     },
   ];
 
-  return createChargePointFormFields.map(({ name, component }) => (
-    <S.FormItem key={name}>
-      <S.Label>{name}</S.Label>
-      {component}
-    </S.FormItem>
-  ));
+  return (
+    <form onSubmit={formik.handleSubmit}>
+      {createChargePointFormFields.map(({ name, component }) => (
+        <S.FormItem key={name}>
+          <S.Label>{name}</S.Label>
+          {component}
+        </S.FormItem>
+      ))}
+      <Button type="submit" fullWidth text="Create" />
+    </form>
+  );
 };
