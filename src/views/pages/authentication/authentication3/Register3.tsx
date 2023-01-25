@@ -1,16 +1,15 @@
 import { Link } from 'react-router-dom';
 
-import { useTheme } from '@mui/material/styles';
 import { Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
 
 import AuthWrapper1 from '../AuthWrapper1';
 import AuthCardWrapper from '../AuthCardWrapper';
-import Logo from 'ui-component/Logo';
 import AuthRegister from '../auth-forms/AuthRegister';
 import AuthFooter from 'ui-component/cards/AuthFooter';
+import { useTheme } from '@mui/styles';
 
 const Register = () => {
-  const theme = useTheme();
+  const theme: any = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
@@ -37,9 +36,14 @@ const Register = () => {
                   justifyContent="center"
                 >
                   <Grid item sx={{ mb: 3 }}>
-                    <Link to="#">
-                      <Logo />
-                    </Link>
+                    <Typography
+                      component={Link}
+                      to="/"
+                      variant="h2"
+                      sx={{ textDecoration: 'none' }}
+                    >
+                      ELECTRO
+                    </Typography>
                   </Grid>
                   <Grid item xs={12}>
                     <Grid

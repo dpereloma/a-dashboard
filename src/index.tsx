@@ -1,4 +1,5 @@
 import { createRoot } from 'react-dom/client';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -10,13 +11,17 @@ import { store } from 'store';
 import 'assets/scss/style.scss';
 import config from './config';
 
-const container = document.getElementById('root');
+export const queryClient = new QueryClient();
+
+const container = document.getElementById('root') as HTMLElement;
 const root = createRoot(container);
 root.render(
   <Provider store={store}>
-    <BrowserRouter basename={config.basename}>
-      <App />
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter basename={config.basename}>
+        <App />
+      </BrowserRouter>
+    </QueryClientProvider>
   </Provider>,
 );
 

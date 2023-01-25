@@ -4,7 +4,7 @@ import MuiButton from '@mui/material/Button';
 
 export const Button = ({
   text,
-  children,
+  children = null,
   size = 'medium',
   variant = 'contained',
   disabled = false,
