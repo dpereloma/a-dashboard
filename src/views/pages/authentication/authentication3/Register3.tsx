@@ -4,13 +4,19 @@ import { Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
 
 import AuthWrapper1 from '../AuthWrapper1';
 import AuthCardWrapper from '../AuthCardWrapper';
-import AuthRegister from '../auth-forms/AuthRegister';
-import AuthFooter from 'ui-component/cards/AuthFooter';
+import { AuthRegisterForm } from '../auth-forms/AuthRegisterForm';
 import { useTheme } from '@mui/styles';
+import { useAuth } from '../../../../features/auth/hooks';
+import { Navigate } from 'react-router';
 
 const Register = () => {
   const theme: any = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
+  const { isAuthed } = useAuth();
+
+  if (isAuthed) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <AuthWrapper1>
@@ -77,7 +83,7 @@ const Register = () => {
                     </Grid>
                   </Grid>
                   <Grid item xs={12}>
-                    <AuthRegister />
+                    <AuthRegisterForm />
                   </Grid>
                   <Grid item xs={12}>
                     <Divider />
@@ -104,9 +110,6 @@ const Register = () => {
               </AuthCardWrapper>
             </Grid>
           </Grid>
-        </Grid>
-        <Grid item xs={12} sx={{ m: 3, mt: 1 }}>
-          <AuthFooter />
         </Grid>
       </Grid>
     </AuthWrapper1>

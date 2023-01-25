@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useTheme } from '@mui/styles';
 import * as Yup from 'yup';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Box,
   Checkbox,
@@ -17,22 +17,24 @@ import {
   Typography,
 } from '@mui/material';
 import { Formik } from 'formik';
-import { useScriptRef } from 'hooks';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import { Button } from 'ui-component/buttons/Button';
 
 import { strengthColor, strengthIndicator } from 'utils/password-strength';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { useAuthRegisterMutation } from '../../../../features/auth/queries';
 
-const FirebaseRegister = ({ ...others }) => {
+export const AuthRegisterForm = ({ ...others }) => {
   const theme: any = useTheme();
-  const scriptedRef = useScriptRef();
+  const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false);
   const [checked, setChecked] = useState(true);
-
   const [strength, setStrength] = useState(0);
   const [level, setLevel] = useState<any>();
+
+  const mutation = useAuthRegisterMutation();
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -48,12 +50,6 @@ const FirebaseRegister = ({ ...others }) => {
     setLevel(strengthColor(temp));
   };
 
-  useEffect(() => {
-    changePassword('123456');
-  }, []);
-
-  // @ts-ignore
-  // @ts-ignore
   return (
     <>
       <Formik
@@ -69,20 +65,25 @@ const FirebaseRegister = ({ ...others }) => {
             .required('Email is required'),
           password: Yup.string().max(255).required('Password is required'),
         })}
-        onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
-          try {
-            if (scriptedRef.current) {
-              setStatus({ success: true });
-              setSubmitting(false);
-            }
-          } catch (err: any) {
-            console.error(err);
-            if (scriptedRef.current) {
-              setStatus({ success: false });
-              setErrors({ submit: err.message });
-              setSubmitting(false);
-            }
-          }
+        onSubmit={async ({ email, password }) => {
+          mutation.mutate(
+            {
+              password,
+              contacts: {
+                email: {
+                  contact: email,
+                },
+              },
+            },
+            {
+              onSuccess: () => {
+                navigate('/pages/login/login3');
+              },
+              onError: (err) => {
+                console.log(err);
+              },
+            },
+          );
         }}
       >
         {({
@@ -232,5 +233,3 @@ const FirebaseRegister = ({ ...others }) => {
     </>
   );
 };
-
-export default FirebaseRegister;

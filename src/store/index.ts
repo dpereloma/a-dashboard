@@ -7,6 +7,7 @@ import { chargingSitesReducer } from './chargingSItesSlice';
 
 const store = configureStore({
   reducer: {
+    // @ts-ignore
     customization: customizationReducer,
     auth: authReducer,
     chargePoints: chargePointsReducer,
@@ -14,5 +15,8 @@ const store = configureStore({
     chargingSites: chargingSitesReducer,
   },
 });
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 
 export { store };

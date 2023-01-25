@@ -1,17 +1,22 @@
 import { Link } from 'react-router-dom';
 
-import { useTheme } from '@mui/material/styles';
+import { useTheme } from '@mui/styles';
 import { Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
 
 import AuthWrapper1 from '../AuthWrapper1';
 import AuthCardWrapper from '../AuthCardWrapper';
-import AuthLogin from '../auth-forms/AuthLogin/AuthLogin';
-import Logo from 'ui-component/Logo';
-import AuthFooter from 'ui-component/cards/AuthFooter';
+import { AuthLoginForm } from '../auth-forms/AuthLoginForm';
+import { useAuth } from '../../../../features/auth/hooks';
+import { Navigate } from 'react-router';
 
 const Login = () => {
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
+  const { isAuthed } = useAuth();
+
+  if (isAuthed) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <AuthWrapper1>
@@ -38,7 +43,14 @@ const Login = () => {
                 >
                   <Grid item sx={{ mb: 3 }}>
                     <Link to="#">
-                      <Logo />
+                      <Typography
+                        component={Link}
+                        to="/"
+                        variant="h2"
+                        sx={{ textDecoration: 'none' }}
+                      >
+                        ELECTRO
+                      </Typography>
                     </Link>
                   </Grid>
                   <Grid item xs={12}>
@@ -73,7 +85,7 @@ const Login = () => {
                     </Grid>
                   </Grid>
                   <Grid item xs={12}>
-                    <AuthLogin />
+                    <AuthLoginForm />
                   </Grid>
                   <Grid item xs={12}>
                     <Divider />
@@ -100,9 +112,6 @@ const Login = () => {
               </AuthCardWrapper>
             </Grid>
           </Grid>
-        </Grid>
-        <Grid item xs={12} sx={{ m: 3, mt: 1 }}>
-          <AuthFooter />
         </Grid>
       </Grid>
     </AuthWrapper1>

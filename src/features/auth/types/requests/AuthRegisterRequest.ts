@@ -1,15 +1,15 @@
 export interface AuthRegisterRequest {
   contacts: {
     email: {
-      attributes: {
+      attributes?: {
         additionalProp1: string;
         additionalProp2: string;
         additionalProp3: string;
       };
       contact: string;
-      verified: true;
+      verified?: true;
     };
-    phone: {
+    phone?: {
       attributes: {
         additionalProp1: string;
         additionalProp2: string;
@@ -19,7 +19,7 @@ export interface AuthRegisterRequest {
       verified: true;
     };
   };
-  details: {
+  details?: {
     form: string;
     name: string;
   };

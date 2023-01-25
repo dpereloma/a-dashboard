@@ -1,5 +1,5 @@
 export interface AuthLoginRequest {
-  details: {
+  details?: {
     appVer: string;
     browser: string;
     platform: string;
