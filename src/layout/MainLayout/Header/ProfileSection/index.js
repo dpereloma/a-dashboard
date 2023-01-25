@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -38,13 +38,14 @@ import User1 from 'assets/images/users/user-round.svg';
 
 // assets
 import { IconLogout, IconSearch, IconSettings, IconUser } from '@tabler/icons';
-import { authActions } from 'store/authSlice';
+import { useAuthLogout } from '../../../../features/auth/hooks';
 
 const ProfileSection = () => {
   const theme = useTheme();
   const customization = useSelector((state) => state.customization);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+
+  const { logout } = useAuthLogout();
 
   const [sdm, setSdm] = useState(true);
   const [value, setValue] = useState('');
@@ -54,8 +55,7 @@ const ProfileSection = () => {
 
   const anchorRef = useRef(null);
   const handleLogout = async () => {
-    dispatch(authActions.logout());
-    console.log('Logout');
+    logout();
   };
 
   const handleClose = (event) => {
