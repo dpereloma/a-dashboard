@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useChargePointsPartnerItemsQuery } from '../../../../features/charge-points/queries';
+import { useAuth } from '../../../../features/auth/hooks';
 
 export const chargePointsItems = [
   {
@@ -87,14 +89,23 @@ export const pointStates = [
 ];
 
 export const useChargePoints = () => {
-  const chargePoints = useSelector((state) => state.chargePoints.chargePoints);
+  // const chargePoints = useSelector((state) => state.chargePoints.chargePoints);
 
   const [searchValue, setSearchValue] = useState('');
   const [filterValues, setFilterValues] = useState({});
-  const [filterChargePoints, setFilterChargePoints] = useState(chargePoints);
+  const [filterChargePoints, setFilterChargePoints] = useState(null);
+  const [open, setOpen] = useState(false);
+
+  const { user } = useAuth();
+
+  const { data } = useChargePointsPartnerItemsQuery(user.id);
+
+  const handleToggle = () => {
+    setOpen(!open);
+  };
 
   const filteredChargePoints = useMemo(() => {
-    return filterChargePoints.filter(({ name }) => name.includes(searchValue));
+    return filterChargePoints?.filter(({ name }) => name.includes(searchValue));
   }, [searchValue, filterChargePoints]);
 
   const handleChange = (e) =>
@@ -109,7 +120,7 @@ export const useChargePoints = () => {
       ([, v]) => v && v !== '-',
     );
     if (filledFilterParams.length > 0) {
-      const filteredChargePoints = chargePoints.filter((item) => {
+      const filteredChargePoints = data?.items?.filter((item) => {
         const isValid = [];
         filledFilterParams.forEach(([k, v]) => {
           isValid.push(item[k] === v);
@@ -118,14 +129,22 @@ export const useChargePoints = () => {
       });
       setFilterChargePoints(filteredChargePoints);
     } else {
-      setFilterChargePoints(chargePoints);
+      setFilterChargePoints(data?.items);
     }
   }, [filterValues]);
+
+  useEffect(() => {
+    if (!filterChargePoints) {
+      setFilterChargePoints(data?.items);
+    }
+  }, [data]);
 
   return {
     filteredChargePoints,
     filterValues,
     searchValue,
+    open,
+    handleToggle,
     handleChange,
     onSearchChange,
     onSearchClear,

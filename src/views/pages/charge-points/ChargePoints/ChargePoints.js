@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { IconButton } from '@mui/material';
+import { Drawer, IconButton } from '@mui/material';
 import { FilterList } from '@mui/icons-material';
 import MainCard from 'ui-component/cards/MainCard';
 import { SearchInput } from 'ui-component/inputs';
@@ -20,7 +20,9 @@ const ChargePoints = () => {
     filteredChargePoints,
     filterValues,
     searchValue,
+    open,
     handleChange,
+    handleToggle,
     onSearchChange,
     onSearchClear,
   } = useChargePoints();
@@ -35,7 +37,8 @@ const ChargePoints = () => {
   const renderHeaderAction = () => (
     <Button
       text="Add charge point"
-      onClick={() => navigate('/charge-points/create')}
+      // onClick={() => navigate('/charge-points/create')}
+      onClick={handleToggle}
     />
   );
 
@@ -69,6 +72,18 @@ const ChargePoints = () => {
       >
         <ChargePointsTable chargePoints={filteredChargePoints} />
       </MainCard>
+      <Drawer
+        anchor="right"
+        onClose={handleToggle}
+        open={open}
+        PaperProps={{
+          sx: {
+            width: 280,
+          },
+        }}
+      >
+        111
+      </Drawer>
     </>
   );
 };

@@ -66,6 +66,7 @@ export const ChargePointsTable = ({ chargePoints }) => {
       renderTableHeader={renderTableHeader}
       renderTableBody={renderTableBody}
       items={chargePoints}
+      emptyItemsMessage="No charge points"
     />
   );
 };

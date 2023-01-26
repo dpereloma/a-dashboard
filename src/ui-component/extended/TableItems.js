@@ -75,7 +75,7 @@ export const TableItems = ({
           ))}
         </BodyRows>
       </Table>
-      {items?.length === 0 ? (
+      {items?.length === 0 || !items ? (
         <Box
           sx={{
             width: '100%',
