@@ -89,7 +89,7 @@ export const pointStates = [
 ];
 
 export const useChargePoints = () => {
-  // const chargePoints = useSelector((state) => state.chargePoints.chargePoints);
+  const chargePoints = useSelector((state) => state.chargePoints.chargePoints);
 
   const [searchValue, setSearchValue] = useState('');
   const [filterValues, setFilterValues] = useState({});
@@ -135,9 +135,9 @@ export const useChargePoints = () => {
 
   useEffect(() => {
     if (!filterChargePoints) {
-      setFilterChargePoints(data?.items);
+      setFilterChargePoints(chargePoints);
     }
-  }, [data]);
+  }, []);
 
   return {
     filteredChargePoints,

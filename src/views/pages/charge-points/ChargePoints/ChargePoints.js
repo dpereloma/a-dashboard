@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Drawer, IconButton } from '@mui/material';
+import { Box, Drawer, IconButton, Typography } from '@mui/material';
 import { FilterList } from '@mui/icons-material';
 import MainCard from 'ui-component/cards/MainCard';
 import { SearchInput } from 'ui-component/inputs';
@@ -12,6 +12,7 @@ import { Button } from 'ui-component/buttons/Button';
 
 import { useChargePoints } from './ChargePoints.utils';
 import * as S from './ChargePoints.styles';
+import AnimateButton from '../../../../ui-component/extended/AnimateButton';
 
 const ChargePoints = () => {
   const navigate = useNavigate();
@@ -67,7 +68,7 @@ const ChargePoints = () => {
       <MainCard
         sx={{ marginTop: '16px' }}
         contentSX={{ padding: 0 }}
-        title="Charge Points"
+        title=" "
         secondary={renderAction()}
       >
         <ChargePointsTable chargePoints={filteredChargePoints} />
@@ -82,7 +83,33 @@ const ChargePoints = () => {
           },
         }}
       >
-        111
+        <Box
+          sx={{
+            padding: '24px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '16px',
+          }}
+        >
+          <Typography variant="h3">Add charge point</Typography>
+          <AnimateButton>
+            <Button
+              fullWidth
+              text="Search by SN"
+              size="large"
+              onClick={() => navigate('/charge-points/create')}
+            />
+          </AnimateButton>
+          <AnimateButton>
+            <Button
+              disabled={true}
+              fullWidth
+              size="large"
+              color="secondary"
+              text="Add custom charge point"
+            />
+          </AnimateButton>
+        </Box>
       </Drawer>
     </>
   );

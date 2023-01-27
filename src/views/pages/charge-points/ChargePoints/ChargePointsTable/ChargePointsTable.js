@@ -46,12 +46,13 @@ export const ChargePointsTable = ({ chargePoints }) => {
       ),
       chargingSites: chargePoint.site,
       accessibility: chargePoint.accessibility,
-      state: (
-        <Chip
-          variant={stateVariant[chargePoint.state]}
-          text={chargePoint.state}
-        />
-      ),
+      state: chargePoint.state,
+      // state: (
+      //   <Chip
+      //     variant={stateVariant[chargePoint.state]}
+      //     text={chargePoint.state}
+      //   />
+      // ),
       pointState: (
         <Switch checked={chargePoint.pointState === 'active'} size="small" />
       ),
