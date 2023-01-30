@@ -1,14 +1,12 @@
 import { useQuery, UseQueryOptions } from 'react-query';
 
-import { fetchChargePointsPartnerItems } from '../fetches';
+import { fetchChargePointsSearch } from '../fetches';
 import { Requests, Responses } from '../types';
 import * as Types from '../../../types';
 
-export const USE_CHARGE_POINTS_PARTNER_ITEMS_QUERY_KEY =
-  'charge.points.partner.items';
+export const USE_CHARGE_POINTS_SEARCH_QUERY_KEY = 'charge.points.search';
 
-export function useChargePointsPartnerItemsQuery(
-  partnerId: string,
+export function useChargePointsSearchQuery(
   params?: Requests.ReqChargePointsPartnerItemsParams,
   options?: UseQueryOptions<
     Responses.ResChargePointsPartnerItemsParams,
@@ -16,8 +14,8 @@ export function useChargePointsPartnerItemsQuery(
   >,
 ) {
   return useQuery(
-    [USE_CHARGE_POINTS_PARTNER_ITEMS_QUERY_KEY, params],
-    () => fetchChargePointsPartnerItems(partnerId, params),
+    [USE_CHARGE_POINTS_SEARCH_QUERY_KEY, params],
+    () => fetchChargePointsSearch(params),
     {
       refetchOnWindowFocus: false,
       refetchInterval: false,

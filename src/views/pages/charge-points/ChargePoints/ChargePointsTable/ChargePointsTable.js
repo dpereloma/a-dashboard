@@ -17,11 +17,11 @@ export const ChargePointsTable = ({ chargePoints }) => {
 
   const renderTableHeader = () => {
     const columnNames = {
-      point: <TableCell>Charge point</TableCell>,
-      chargingSites: <TableCell>Charging sites</TableCell>,
-      accessibility: <TableCell>Accessibility</TableCell>,
-      state: <TableCell>State</TableCell>,
-      pointState: <TableCell>Charge point state</TableCell>,
+      point: <TableCell align="center">Charge point</TableCell>,
+      chargingSites: <TableCell align="center">Charging sites</TableCell>,
+      accessibility: <TableCell align="center">Accessibility</TableCell>,
+      state: <TableCell align="center">State</TableCell>,
+      pointState: <TableCell align="right">Charge point state</TableCell>,
     };
 
     return Object.entries(columnNames)?.map(([k, v]) => (
@@ -33,20 +33,22 @@ export const ChargePointsTable = ({ chargePoints }) => {
     const columnNames = {
       point: (
         <Box sx={{ display: 'flex', gap: '16px' }}>
-          <Avatar />
+          {/*<Avatar />*/}
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <S.ElementName
               to={Helpers.route('/charge-points/:id', chargePoint.id)}
             >
-              {chargePoint.name}
+              {chargePoint?.device?.chargePointModel}
             </S.ElementName>
-            <Typography variant="caption">{chargePoint.code}</Typography>
+            <Typography variant="caption">
+              {chargePoint?.device?.chargePointSerialNumber}
+            </Typography>
           </Box>
         </Box>
       ),
-      chargingSites: chargePoint.site,
-      accessibility: chargePoint.accessibility,
-      state: chargePoint.state,
+      chargingSites: chargePoint.site ?? '-',
+      accessibility: chargePoint.accessibility ?? '-',
+      state: chargePoint.state ?? '-',
       // state: (
       //   <Chip
       //     variant={stateVariant[chargePoint.state]}
@@ -54,14 +56,17 @@ export const ChargePointsTable = ({ chargePoints }) => {
       //   />
       // ),
       pointState: (
-        <Switch checked={chargePoint.pointState === 'active'} size="small" />
+        <Switch checked={chargePoint.status === 'active'} size="small" />
       ),
     };
 
-    return Object.entries(columnNames)?.map(([k, v]) => (
-      <TableCell key={k}>{v}</TableCell>
+    return Object.entries(columnNames)?.map(([k, v], i, arr) => (
+      <TableCell align={i === arr.length - 1 ? 'right' : 'center'} key={k}>
+        {v}
+      </TableCell>
     ));
   };
+
   return (
     <TableItems
       renderTableHeader={renderTableHeader}

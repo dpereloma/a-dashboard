@@ -55,20 +55,20 @@ const ChargePoints = () => {
       <IconButton size="small">
         <DropdownMenu icon={FilterList} renderContent={renderFilterList} />
       </IconButton>
+      <Button
+        text="Add charge point"
+        // onClick={() => navigate('/charge-points/create')}
+        onClick={handleToggle}
+      />
     </S.ActionsWrapper>
   );
 
   return (
     <>
       <MainCard
-        title="Charge Points"
-        secondary={renderHeaderAction()}
-        content={false}
-      />
-      <MainCard
         sx={{ marginTop: '16px' }}
         contentSX={{ padding: 0 }}
-        title=" "
+        title="Charge Points"
         secondary={renderAction()}
       >
         <ChargePointsTable chargePoints={filteredChargePoints} />
@@ -92,23 +92,33 @@ const ChargePoints = () => {
           }}
         >
           <Typography variant="h3">Add charge point</Typography>
-          <AnimateButton>
-            <Button
-              fullWidth
-              text="Search by SN"
-              size="large"
-              onClick={() => navigate('/charge-points/create')}
-            />
-          </AnimateButton>
-          <AnimateButton>
-            <Button
-              disabled={true}
-              fullWidth
-              size="large"
-              color="secondary"
-              text="Add custom charge point"
-            />
-          </AnimateButton>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <AnimateButton>
+              <Button
+                fullWidth
+                text="Search by SN"
+                size="large"
+                onClick={() => navigate('/charge-points/create')}
+              />
+            </AnimateButton>
+            <Typography variant="caption">
+              If you already connect the station to our OCPP
+            </Typography>
+          </Box>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <AnimateButton>
+              <Button
+                disabled={true}
+                fullWidth
+                size="large"
+                color="secondary"
+                text="Add custom charge point"
+              />
+            </AnimateButton>
+            <Typography variant="caption">
+              If you want to add station without connect to the server
+            </Typography>
+          </Box>
         </Box>
       </Drawer>
     </>

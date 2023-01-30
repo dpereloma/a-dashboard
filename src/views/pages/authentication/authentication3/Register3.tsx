@@ -98,7 +98,7 @@ const Register = () => {
                     >
                       <Typography
                         component={Link}
-                        to="/pages/login/login3"
+                        to="/login"
                         variant="subtitle1"
                         sx={{ textDecoration: 'none' }}
                       >

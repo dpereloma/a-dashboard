@@ -77,7 +77,7 @@ export const AuthRegisterForm = ({ ...others }) => {
             },
             {
               onSuccess: () => {
-                navigate('/pages/login/login3');
+                navigate('/login');
               },
               onError: (err) => {
                 console.log(err);

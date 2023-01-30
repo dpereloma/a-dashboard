@@ -95,6 +95,7 @@ export const useChargePoints = () => {
   const [filterValues, setFilterValues] = useState({});
   const [filterChargePoints, setFilterChargePoints] = useState(null);
   const [open, setOpen] = useState(false);
+  console.log(filterChargePoints);
 
   const { user } = useAuth();
 
@@ -105,7 +106,9 @@ export const useChargePoints = () => {
   };
 
   const filteredChargePoints = useMemo(() => {
-    return filterChargePoints?.filter(({ name }) => name.includes(searchValue));
+    return filterChargePoints?.filter(({ device }) =>
+      device?.chargePointModel?.includes(searchValue),
+    );
   }, [searchValue, filterChargePoints]);
 
   const handleChange = (e) =>
@@ -135,9 +138,9 @@ export const useChargePoints = () => {
 
   useEffect(() => {
     if (!filterChargePoints) {
-      setFilterChargePoints(chargePoints);
+      setFilterChargePoints(data?.items);
     }
-  }, []);
+  }, [data]);
 
   return {
     filteredChargePoints,

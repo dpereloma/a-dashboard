@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import MainCard from 'ui-component/cards/MainCard';
@@ -7,17 +7,51 @@ import { CreateChargePointForm } from './CreateChargePointForm';
 import { Button } from '../../../../ui-component/buttons/Button';
 import SubCard from '../../../../ui-component/cards/SubCard';
 import AnimateButton from '../../../../ui-component/extended/AnimateButton';
+import {
+  useChargePointsPartnerAssignMutation,
+  useChargePointsSearchQuery,
+} from '../../../../features/charge-points/queries';
+import { useAuth } from '../../../../features/auth/hooks';
 
 const CreateChargePoints = () => {
   const navigate = useNavigate();
 
-  const [searchValue, setSearchValue] = useState();
+  const { user } = useAuth();
+
+  const [searchValue, setSearchValue] = useState('');
+  const { data, refetch } = useChargePointsSearchQuery(
+    { deviceSn: searchValue, partnerSet: false },
+    {
+      enabled: !!searchValue,
+    },
+  );
+  const assignMutation = useChargePointsPartnerAssignMutation();
 
   const renderHeaderAction = () => (
     <MenuItem sx={{ borderRadius: '8px' }} onClick={() => navigate(-1)}>
       Back
     </MenuItem>
   );
+  console.log(data);
+
+  const handleSearch = () => {
+    refetch();
+  };
+
+  const handleAssignChargePoint = (chargePoint) => {
+    assignMutation.mutate(
+      {
+        deviceId: chargePoint?.device?.deviceId,
+        deviceSn: chargePoint?.device?.chargePointSerialNumber,
+        partnerId: user.id,
+      },
+      {
+        onSuccess: () => {
+          navigate('/charge-points');
+        },
+      },
+    );
+  };
 
   return (
     <>
@@ -36,34 +70,48 @@ const CreateChargePoints = () => {
                 fullWidth
                 size="large"
                 value={searchValue}
-                placeholder="SN"
+                placeholder="Serial number"
                 onChange={(e) => setSearchValue(e.target.value)}
                 InputLabelProps={{
                   shrink: true,
                 }}
                 type="text"
               />
-              <Button size="large" text="Search" />
+              <Button onClick={handleSearch} size="large" text="Search" />
             </Box>
           }
         >
-          <Box>
-            <SubCard
-              contentSX={{ padding: '8px', '&:last-child': { padding: '8px' } }}
-            >
-              <Box
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            {data?.items?.map((chargePoint) => (
+              <SubCard
+                key={chargePoint.id}
+                contentSX={{
+                  padding: '8px',
+                  '&:last-child': { padding: '8px' },
                 }}
               >
-                <Typography>SN</Typography>
-                <AnimateButton>
-                  <Button text="Add" />
-                </AnimateButton>
-              </Box>
-            </SubCard>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Typography>
+                    {chargePoint?.device?.chargePointModel}
+                  </Typography>
+                  <Typography>
+                    {chargePoint?.device?.chargePointSerialNumber}
+                  </Typography>
+                  <AnimateButton>
+                    <Button
+                      text="Add"
+                      onClick={() => handleAssignChargePoint(chargePoint)}
+                    />
+                  </AnimateButton>
+                </Box>
+              </SubCard>
+            ))}
           </Box>
         </MainCard>
         {/*<MainCard*/}
