@@ -3,27 +3,18 @@ import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-// material-ui
 import { useTheme } from '@mui/material/styles';
 import {
   Avatar,
   Box,
-  Card,
-  CardContent,
   Chip,
   ClickAwayListener,
-  Divider,
-  Grid,
-  InputAdornment,
   List,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  OutlinedInput,
   Paper,
   Popper,
-  Stack,
-  Switch,
   Typography,
 } from '@mui/material';
 
@@ -33,15 +24,16 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 import Transitions from 'ui-component/extended/Transitions';
-import UpgradePlanCard from './UpgradePlanCard';
 import User1 from 'assets/images/users/user-round.svg';
 
 // assets
-import { IconLogout, IconSearch, IconSettings, IconUser } from '@tabler/icons';
-import { useAuthLogout } from '../../../../features/auth/hooks';
+import { IconLogout, IconSettings } from '@tabler/icons';
+import { useAuth, useAuthLogout } from '../../../../features/auth/hooks';
 
 const ProfileSection = () => {
   const theme = useTheme();
+  const { user } = useAuth();
+
   const customization = useSelector((state) => state.customization);
   const navigate = useNavigate();
 
@@ -352,6 +344,7 @@ const ProfileSection = () => {
                         {/*    }*/}
                         {/*  />*/}
                         {/*</ListItemButton>*/}
+                        <Typography variant="h4">{user.username}</Typography>
                         <ListItemButton
                           sx={{
                             borderRadius: `${customization.borderRadius}px`,

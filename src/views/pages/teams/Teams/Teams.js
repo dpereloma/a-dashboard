@@ -27,20 +27,16 @@ const Teams = () => {
         onChange={onSearchChange}
         onClear={onSearchClear}
       />
+      <Button onClick={() => navigate('/teams/create')} text="Add team" />
     </S.ActionsWrapper>
   );
 
   return (
     <>
       <MainCard
-        title="Teams"
-        secondary={renderHeaderAction()}
-        content={false}
-      />
-      <MainCard
         sx={{ marginTop: '16px' }}
         contentSX={{ padding: 0 }}
-        title="Your teams"
+        title="Teams"
         secondary={renderAction()}
       >
         <TeamsTable teams={teams} />

@@ -114,7 +114,7 @@ const MainLayout = () => {
          navigation={navigation} icon title rightAlign />*/}
         <Outlet />
       </Main>
-      <Customization />
+      {/*<Customization />*/}
     </Box>
   );
 };

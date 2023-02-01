@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Avatar, Box, Switch, TableCell, Typography } from '@mui/material';
+import { Box, Switch, TableCell, Typography } from '@mui/material';
 import { TableItems } from 'ui-component/extended/TableItems';
 import { Chip } from 'ui-component/Chip';
 
@@ -9,19 +9,19 @@ import { Helpers } from 'helpers';
 import * as S from './ChargePointsTable.styles';
 
 export const ChargePointsTable = ({ chargePoints }) => {
-  const stateVariant = {
-    connected: 'success',
-    paused: 'warning',
-    disconnected: 'error',
+  const statusVariant = {
+    active: 'success',
+    inactive: 'warning',
   };
 
   const renderTableHeader = () => {
     const columnNames = {
       point: <TableCell align="center">Charge point</TableCell>,
-      chargingSites: <TableCell align="center">Charging sites</TableCell>,
-      accessibility: <TableCell align="center">Accessibility</TableCell>,
-      state: <TableCell align="center">State</TableCell>,
-      pointState: <TableCell align="right">Charge point state</TableCell>,
+      vendor: <TableCell align="center">Vendor</TableCell>,
+      address: <TableCell align="center">Location</TableCell>,
+      device: <TableCell align="center">Device</TableCell>,
+      status: <TableCell align="center">Status</TableCell>,
+      pointState: <TableCell align="right"></TableCell>,
     };
 
     return Object.entries(columnNames)?.map(([k, v]) => (
@@ -46,15 +46,15 @@ export const ChargePointsTable = ({ chargePoints }) => {
           </Box>
         </Box>
       ),
-      chargingSites: chargePoint.site ?? '-',
-      accessibility: chargePoint.accessibility ?? '-',
-      state: chargePoint.state ?? '-',
-      // state: (
-      //   <Chip
-      //     variant={stateVariant[chargePoint.state]}
-      //     text={chargePoint.state}
-      //   />
-      // ),
+      vendor: chargePoint.device?.chargePointVendor ?? '-',
+      address: chargePoint?.location?.address ?? '-',
+      device: chargePoint.device?.deviceId ?? '-',
+      status: (
+        <Chip
+          variant={statusVariant[chargePoint.status]}
+          text={chargePoint.status}
+        />
+      ),
       pointState: (
         <Switch checked={chargePoint.status === 'active'} size="small" />
       ),

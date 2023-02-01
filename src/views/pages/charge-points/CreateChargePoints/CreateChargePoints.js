@@ -1,17 +1,17 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import MainCard from 'ui-component/cards/MainCard';
 import { Box, MenuItem, TextField, Typography } from '@mui/material';
-import { CreateChargePointForm } from './CreateChargePointForm';
-import { Button } from '../../../../ui-component/buttons/Button';
-import SubCard from '../../../../ui-component/cards/SubCard';
-import AnimateButton from '../../../../ui-component/extended/AnimateButton';
+import { Button } from 'ui-component/buttons/Button';
+import SubCard from 'ui-component/cards/SubCard';
+import AnimateButton from 'ui-component/extended/AnimateButton';
+
 import {
   useChargePointsPartnerAssignMutation,
   useChargePointsSearchQuery,
-} from '../../../../features/charge-points/queries';
-import { useAuth } from '../../../../features/auth/hooks';
+} from 'features/charge-points/queries';
+import { useAuth } from 'features/auth/hooks';
 
 const CreateChargePoints = () => {
   const navigate = useNavigate();
@@ -55,17 +55,20 @@ const CreateChargePoints = () => {
 
   return (
     <>
-      <MainCard
-        // title="Charge point create"
-        title="Search charge point"
-        secondary={renderHeaderAction()}
-        content={false}
-      />
+      {/*<MainCard*/}
+      {/*  // title="Charge point create"*/}
+      {/*  title="Search charge point"*/}
+      {/*  secondary={renderHeaderAction()}*/}
+      {/*  content={false}*/}
+      {/*/>*/}
       <Box sx={{ display: 'flex', gap: '16px' }}>
         <MainCard
           sx={{ width: '100%', marginTop: '16px' }}
           title={
-            <Box sx={{ display: 'flex', gap: '24px' }}>
+            <Box sx={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
+              <Typography sx={{ width: '300px' }} variant="h4">
+                Search charge point
+              </Typography>
               <TextField
                 fullWidth
                 size="large"
