@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useChargePointsPartnerItemsQuery } from '../../../../features/charge-points/queries';
 import { useAuth } from '../../../../features/auth/hooks';
+import { useChargePointsPartnerFilter } from '../../../../features/charge-points/hooks';
 
 export const chargePointsItems = [
   {
@@ -89,17 +88,30 @@ export const pointStates = [
 ];
 
 export const useChargePoints = () => {
-  const chargePoints = useSelector((state) => state.chargePoints.chargePoints);
-
   const [searchValue, setSearchValue] = useState('');
   const [filterValues, setFilterValues] = useState({});
   const [filterChargePoints, setFilterChargePoints] = useState(null);
   const [open, setOpen] = useState(false);
+  const [page, setPage] = useState(1);
+
   console.log(filterChargePoints);
 
   const { user } = useAuth();
 
-  const { data } = useChargePointsPartnerItemsQuery(user.id);
+  const query = useChargePointsPartnerFilter(
+    '89c81916-1fa9-4eb5-9af8-b1eec1c492ba',
+    {
+      route: '/charge-points',
+    },
+  );
+
+  console.log(query);
+
+  // const { data, isError, isLoading } = useChargePointsPartnerItemsQuery(
+  //   '89c81916-1fa9-4eb5-9af8-b1eec1c492ba',
+  //   undefined,
+  //   { page },
+  // );
 
   const handleToggle = () => {
     setOpen(!open);
@@ -118,12 +130,16 @@ export const useChargePoints = () => {
 
   const onSearchClear = () => setSearchValue('');
 
+  const handlePageChange = (e, value) => {
+    setPage(value);
+  };
+
   useEffect(() => {
     const filledFilterParams = Object.entries(filterValues).filter(
       ([, v]) => v && v !== '-',
     );
     if (filledFilterParams.length > 0) {
-      const filteredChargePoints = data?.items?.filter((item) => {
+      const filteredChargePoints = query?.data?.items?.filter((item) => {
         const isValid = [];
         filledFilterParams.forEach(([k, v]) => {
           isValid.push(item[k] === v);
@@ -132,24 +148,32 @@ export const useChargePoints = () => {
       });
       setFilterChargePoints(filteredChargePoints);
     } else {
-      setFilterChargePoints(data?.items);
+      setFilterChargePoints(query?.data?.items);
     }
   }, [filterValues]);
 
   useEffect(() => {
     if (!filterChargePoints) {
-      setFilterChargePoints(data?.items);
+      setFilterChargePoints(query?.data?.items);
     }
-  }, [data]);
+  }, [query?.data]);
 
   return {
     filteredChargePoints,
     filterValues,
     searchValue,
     open,
+    total: query?.data?.total,
+    isError: query?.isError,
+    isLoading: query?.isLoading,
+    page: query?.page,
+    hasNextPage: query?.hasNextPage,
+    hasPrevPage: query?.hasPrevPage,
     handleToggle,
     handleChange,
     onSearchChange,
     onSearchClear,
+    handlePageChange,
+    handleChangePage: query?.handleChangePage,
   };
 };

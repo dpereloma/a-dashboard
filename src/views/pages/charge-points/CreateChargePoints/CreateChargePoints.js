@@ -2,7 +2,14 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import MainCard from 'ui-component/cards/MainCard';
-import { Box, MenuItem, TextField, Typography } from '@mui/material';
+import {
+  Box,
+  DialogActions,
+  DialogContent,
+  MenuItem,
+  TextField,
+  Typography,
+} from '@mui/material';
 import { Button } from 'ui-component/buttons/Button';
 import SubCard from 'ui-component/cards/SubCard';
 import AnimateButton from 'ui-component/extended/AnimateButton';
@@ -12,13 +19,18 @@ import {
   useChargePointsSearchQuery,
 } from 'features/charge-points/queries';
 import { useAuth } from 'features/auth/hooks';
+import { EdgeDialog } from '../../../../ui-component/EdgeDialog';
+import { useTheme } from '@mui/styles';
 
 const CreateChargePoints = () => {
   const navigate = useNavigate();
+  const theme = useTheme();
 
   const { user } = useAuth();
 
   const [searchValue, setSearchValue] = useState('');
+  const [selectedChargePoint, setSelectedChargePoint] = useState(null);
+  const [openConfirm, setOpenConfirm] = useState(false);
   const { data, refetch } = useChargePointsSearchQuery(
     { deviceSn: searchValue, partnerSet: false },
     {
@@ -43,7 +55,7 @@ const CreateChargePoints = () => {
       {
         deviceId: chargePoint?.device?.deviceId,
         deviceSn: chargePoint?.device?.chargePointSerialNumber,
-        partnerId: user.id,
+        partnerId: '89c81916-1fa9-4eb5-9af8-b1eec1c492ba',
       },
       {
         onSuccess: () => {
@@ -109,7 +121,10 @@ const CreateChargePoints = () => {
                   <AnimateButton>
                     <Button
                       text="Add"
-                      onClick={() => handleAssignChargePoint(chargePoint)}
+                      onClick={() => {
+                        setSelectedChargePoint(chargePoint);
+                        setOpenConfirm(true);
+                      }}
                     />
                   </AnimateButton>
                 </Box>
@@ -127,6 +142,33 @@ const CreateChargePoints = () => {
         {/*  <div>111</div>*/}
         {/*</MainCard>*/}
       </Box>
+      <EdgeDialog
+        open={openConfirm}
+        title="Confirm addition charge point"
+        onClose={() => setOpenConfirm(false)}
+      >
+        <DialogContent>
+          <Box sx={{ padding: '8px 0' }}>
+            <Typography variant="h4">
+              Are you sure you want to add charge point?
+            </Typography>
+          </Box>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={() => setOpenConfirm(false)}
+            variant="outlined"
+            textColor={theme.palette?.primary[200]}
+            fullWidth
+            text="Cancel"
+          />
+          <Button
+            onClick={() => handleAssignChargePoint(selectedChargePoint)}
+            fullWidth
+            text="Add"
+          />
+        </DialogActions>
+      </EdgeDialog>
     </>
   );
 };

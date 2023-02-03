@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, MouseEvent } from 'react';
 
 import { useTheme } from '@mui/styles';
 import {
+  Alert,
   Box,
   Button,
   Checkbox,
@@ -24,31 +25,29 @@ import AnimateButton from 'ui-component/extended/AnimateButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useNavigate } from 'react-router-dom';
-import { useAuthLogin } from '../../../../features/auth/hooks';
+import { useAuthLogin } from '../../../../../features/auth/hooks';
+import { useAuthLoginForm } from './AuthLoginForm.utils';
+import { AuthLoginFormValues } from './AuthLoginForm.types';
 
 export const AuthLoginForm = ({ ...others }) => {
   const theme = useTheme();
-  const navigate = useNavigate();
-  const [checked, setChecked] = useState(true);
 
-  const { login } = useAuthLogin();
-
-  const [showPassword, setShowPassword] = useState(false);
-  const handleClickShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
+  const {
+    showPassword,
+    checked,
+    error,
+    handleSubmit,
+    handleClickShowPassword,
+    handleMouseDownPassword,
+    setChecked,
+  } = useAuthLoginForm();
 
   return (
     <>
-      <Formik
+      <Formik<AuthLoginFormValues>
         initialValues={{
           email: '',
           password: '',
-          submit: null,
         }}
         validationSchema={Yup.object().shape({
           email: Yup.string()
@@ -57,32 +56,7 @@ export const AuthLoginForm = ({ ...others }) => {
             .required('Email is required'),
           password: Yup.string().max(255).required('Password is required'),
         })}
-        onSubmit={async ({ email, password }) => {
-          login(
-            {
-              password,
-              username: email,
-            },
-            {
-              onSuccess: () => {
-                navigate('/');
-              },
-            },
-          );
-          // try {
-          //   if (scriptedRef.current) {
-          //     setStatus({ success: true });
-          //     setSubmitting(false);
-          //   }
-          // } catch (err) {
-          //   console.error(err);
-          //   if (scriptedRef.current) {
-          //     setStatus({ success: false });
-          //     setErrors({ submit: err.message });
-          //     setSubmitting(false);
-          //   }
-          // }
-        }}
+        onSubmit={handleSubmit}
       >
         {({
           errors,
@@ -97,9 +71,13 @@ export const AuthLoginForm = ({ ...others }) => {
             <FormControl
               fullWidth
               error={Boolean(touched.email && errors.email)}
+              // @ts-ignore
               sx={{ ...theme.typography.customInput }}
             >
-              <InputLabel htmlFor="outlined-adornment-email-login">
+              <InputLabel
+                shrink={true}
+                htmlFor="outlined-adornment-email-login"
+              >
                 Email Address / Username
               </InputLabel>
               <OutlinedInput
@@ -125,9 +103,13 @@ export const AuthLoginForm = ({ ...others }) => {
             <FormControl
               fullWidth
               error={Boolean(touched.password && errors.password)}
+              // @ts-ignore
               sx={{ ...theme.typography.customInput }}
             >
-              <InputLabel htmlFor="outlined-adornment-password-login">
+              <InputLabel
+                shrink={true}
+                htmlFor="outlined-adornment-password-login"
+              >
                 Password
               </InputLabel>
               <OutlinedInput
@@ -187,13 +169,7 @@ export const AuthLoginForm = ({ ...others }) => {
                 Forgot Password?
               </Typography>
             </Stack>
-            {errors.submit && (
-              <Box sx={{ mt: 3 }}>
-                <FormHelperText error>{errors.submit}</FormHelperText>
-              </Box>
-            )}
-            {/*{errors ? <Alert severity="error">{errors}</Alert> : null}*/}
-
+            {error ? <Alert severity="error">{error.message}</Alert> : null}
             <Box sx={{ mt: 2 }}>
               <AnimateButton>
                 <Button

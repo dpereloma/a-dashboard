@@ -47,7 +47,7 @@ const ChargePointsDetail = () => {
   const renderCardTitle = () => (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
       <ArrowBackIos sx={{ cursor: 'pointer' }} onClick={() => navigate(-1)} />
-      {`#${id} - ${chargeItem.name}`}
+      {`#${id} - ${chargeItem?.name}`}
     </Box>
   );
   return (

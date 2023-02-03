@@ -1,6 +1,6 @@
 import { styled } from '@mui/material';
 import MuiButton from '@mui/material/Button';
-import { Helpers } from 'helpers';
+import * as Helpers from 'helpers';
 
 export const Button = styled(MuiButton, {
   skipVariantsResolver: true,

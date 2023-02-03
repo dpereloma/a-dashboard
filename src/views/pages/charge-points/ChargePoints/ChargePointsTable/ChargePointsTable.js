@@ -3,24 +3,21 @@ import PropTypes from 'prop-types';
 
 import { Box, Switch, TableCell, Typography } from '@mui/material';
 import { TableItems } from 'ui-component/extended/TableItems';
-import { Chip } from 'ui-component/Chip';
 
-import { Helpers } from 'helpers';
+import * as Helpers from 'helpers';
 import * as S from './ChargePointsTable.styles';
+import { Button } from '../../../../../ui-component/buttons/Button';
 
-export const ChargePointsTable = ({ chargePoints }) => {
-  const statusVariant = {
-    active: 'success',
-    inactive: 'warning',
-  };
-
+export const ChargePointsTable = ({
+  chargePoints,
+  handleOpenAddChargePoint,
+}) => {
   const renderTableHeader = () => {
     const columnNames = {
       point: <TableCell align="center">Charge point</TableCell>,
       vendor: <TableCell align="center">Vendor</TableCell>,
       address: <TableCell align="center">Location</TableCell>,
       device: <TableCell align="center">Device</TableCell>,
-      status: <TableCell align="center">Status</TableCell>,
       pointState: <TableCell align="right"></TableCell>,
     };
 
@@ -36,7 +33,7 @@ export const ChargePointsTable = ({ chargePoints }) => {
           {/*<Avatar />*/}
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <S.ElementName
-              to={Helpers.route('/charge-points/:id', chargePoint.id)}
+              to={Helpers.route('/charge-points/:id/details', chargePoint.id)}
             >
               {chargePoint?.device?.chargePointModel}
             </S.ElementName>
@@ -49,12 +46,6 @@ export const ChargePointsTable = ({ chargePoints }) => {
       vendor: chargePoint.device?.chargePointVendor ?? '-',
       address: chargePoint?.location?.address ?? '-',
       device: chargePoint.device?.deviceId ?? '-',
-      status: (
-        <Chip
-          variant={statusVariant[chargePoint.status]}
-          text={chargePoint.status}
-        />
-      ),
       pointState: (
         <Switch checked={chargePoint.status === 'active'} size="small" />
       ),
@@ -72,7 +63,12 @@ export const ChargePointsTable = ({ chargePoints }) => {
       renderTableHeader={renderTableHeader}
       renderTableBody={renderTableBody}
       items={chargePoints}
-      emptyItemsMessage="No charge points"
+      emptyItemsMessage={
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
+          No charge points
+          <Button text="Add charge point" onClick={handleOpenAddChargePoint} />
+        </Box>
+      }
     />
   );
 };

@@ -23,11 +23,12 @@ const ChargePointsRoutes = {
   element: <MainLayout />,
   children: [
     {
-      path: '/charge-points',
+      path: '/charge-points/*',
       element: <PrivateRoute element={<ChargePoints />} />,
     },
     {
-      path: '/charge-points/:id',
+      path: '/charge-points/:id/details',
+      caseSensitive: true,
       element: <PrivateRoute element={<ChargePointsDetail />} />,
     },
     {

@@ -6,8 +6,8 @@ const icons = {
 
 const pages = {
   id: 'pages',
-  title: 'Pages',
-  caption: 'Pages Caption',
+  // title: 'Pages',
+  // caption: 'Pages Caption',
   type: 'group',
   children: [
     // {
@@ -52,13 +52,13 @@ const pages = {
           url: '/charge-points',
           target: false,
         },
-        {
-          id: 'charging-sites',
-          title: 'Charging Sites',
-          type: 'item',
-          url: '/charging-sites',
-          target: false,
-        },
+        // {
+        //   id: 'charging-sites',
+        //   title: 'Charging Sites',
+        //   type: 'item',
+        //   url: '/charging-sites',
+        //   target: false,
+        // },
       ],
     },
   ],

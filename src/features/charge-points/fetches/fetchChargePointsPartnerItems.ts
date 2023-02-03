@@ -2,6 +2,7 @@ import { ChargePointsTypes } from '..';
 import { AuthHelpers } from '../../auth';
 import * as Services from '../../../services';
 import * as Types from '../../../types';
+import * as Helpers from 'helpers';
 
 /**
  * Search clients.
@@ -11,6 +12,7 @@ import * as Types from '../../../types';
  *
  * @param partnerId - Partner ID
  * @param params - Params
+ * @param pagination - Pagination
  *
  * @template TResponse - API response data type
  * @template TError - API error response data type
@@ -21,13 +23,16 @@ export async function fetchChargePointsPartnerItems<
 >(
   partnerId: string,
   params?: ChargePointsTypes.Requests.ReqChargePointsPartnerItemsParams,
+  pagination?: Helpers.RequestPagination,
 ) {
   try {
+    console.log(2222);
+    console.log({ ...params, ...Helpers.requestPagination(pagination) });
     const header = await AuthHelpers.authHeader();
     const response = await Services.apiService.get<TResponse>(
       `/charging/charge-points/partners/${partnerId}/charge-points`,
       {
-        params,
+        params: { ...params, ...Helpers.requestPagination(pagination) },
         headers: { ...header },
       },
     );

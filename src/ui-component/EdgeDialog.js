@@ -26,7 +26,12 @@ const Container = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-export const EdgeDialog = ({ title, children, onClose, ...props }) => {
+export const EdgeDialog = ({
+  title = undefined,
+  children,
+  onClose,
+  ...props
+}) => {
   const isMobile = useDeviceIsDown('laptop');
 
   return (
@@ -35,9 +40,11 @@ export const EdgeDialog = ({ title, children, onClose, ...props }) => {
       TransitionComponent={isMobile ? SlideUp : undefined}
       onClose={onClose}
     >
-      <DialogTitle className="edge-dialog-title" onClose={onClose}>
-        {title}
-      </DialogTitle>
+      {title ? (
+        <DialogTitle className="edge-dialog-title" onClose={onClose}>
+          {title}
+        </DialogTitle>
+      ) : null}
       {children}
     </Container>
   );

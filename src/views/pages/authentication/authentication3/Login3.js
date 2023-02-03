@@ -5,7 +5,7 @@ import { Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
 
 import AuthWrapper1 from '../AuthWrapper1';
 import AuthCardWrapper from '../AuthCardWrapper';
-import { AuthLoginForm } from '../auth-forms/AuthLoginForm';
+import { AuthLoginForm } from '../auth-forms/AuthLoginForm/AuthLoginForm';
 import { useAuth } from '../../../../features/auth/hooks';
 import { Navigate } from 'react-router';
 

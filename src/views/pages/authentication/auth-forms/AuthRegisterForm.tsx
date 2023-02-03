@@ -4,8 +4,11 @@ import * as Yup from 'yup';
 
 import { Link, useNavigate } from 'react-router-dom';
 import {
+  Alert,
   Box,
   Checkbox,
+  DialogActions,
+  DialogContent,
   FormControl,
   FormControlLabel,
   FormHelperText,
@@ -13,7 +16,9 @@ import {
   IconButton,
   InputAdornment,
   InputLabel,
+  MenuItem,
   OutlinedInput,
+  Select,
   Typography,
 } from '@mui/material';
 import { Formik } from 'formik';
@@ -24,6 +29,7 @@ import { strengthColor, strengthIndicator } from 'utils/password-strength';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useAuthRegisterMutation } from '../../../../features/auth/queries';
+import { EdgeDialog } from '../../../../ui-component/EdgeDialog';
 
 export const AuthRegisterForm = ({ ...others }) => {
   const theme: any = useTheme();
@@ -31,6 +37,7 @@ export const AuthRegisterForm = ({ ...others }) => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [checked, setChecked] = useState(true);
+  const [openSuccess, setOpenSuccess] = useState(false);
   const [strength, setStrength] = useState(0);
   const [level, setLevel] = useState<any>();
 
@@ -77,7 +84,7 @@ export const AuthRegisterForm = ({ ...others }) => {
             },
             {
               onSuccess: () => {
-                navigate('/login');
+                setOpenSuccess(true);
               },
               onError: (err) => {
                 console.log(err);
@@ -209,12 +216,9 @@ export const AuthRegisterForm = ({ ...others }) => {
                 />
               </Grid>
             </Grid>
-            {errors.submit && (
-              <Box sx={{ mt: 3 }}>
-                <FormHelperText error>{errors.submit}</FormHelperText>
-              </Box>
-            )}
-
+            {mutation.error ? (
+              <Alert severity="error">{mutation.error.message}</Alert>
+            ) : null}
             <Box sx={{ mt: 2 }}>
               <AnimateButton>
                 <Button
@@ -230,6 +234,22 @@ export const AuthRegisterForm = ({ ...others }) => {
           </form>
         )}
       </Formik>
+      <EdgeDialog open={openSuccess} onClose={() => setOpenSuccess(false)}>
+        <DialogContent>
+          <Box sx={{ padding: '24px' }}>
+            <Typography variant="h4">
+              Successful registration, now you can log in
+            </Typography>
+          </Box>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={() => navigate('/login')}
+            fullWidth
+            text="To login"
+          />
+        </DialogActions>
+      </EdgeDialog>
     </>
   );
 };

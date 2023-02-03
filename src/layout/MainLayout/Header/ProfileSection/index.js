@@ -47,7 +47,9 @@ const ProfileSection = () => {
 
   const anchorRef = useRef(null);
   const handleLogout = async () => {
-    logout();
+    logout(null, {
+      onSuccess: () => navigate('/login'),
+    });
   };
 
   const handleClose = (event) => {
@@ -100,20 +102,20 @@ const ProfileSection = () => {
             lineHeight: 0,
           },
         }}
-        icon={
-          <Avatar
-            src={User1}
-            sx={{
-              ...theme.typography.mediumAvatar,
-              margin: '8px 0 8px 8px !important',
-              cursor: 'pointer',
-            }}
-            ref={anchorRef}
-            aria-controls={open ? 'menu-list-grow' : undefined}
-            aria-haspopup="true"
-            color="inherit"
-          />
-        }
+        // icon={
+        //   <Avatar
+        //     src={User1}
+        //     sx={{
+        //       ...theme.typography.mediumAvatar,
+        //       margin: '8px 0 8px 8px !important',
+        //       cursor: 'pointer',
+        //     }}
+        //     ref={anchorRef}
+        //     aria-controls={open ? 'menu-list-grow' : undefined}
+        //     aria-haspopup="true"
+        //     color="inherit"
+        //   />
+        // }
         label={
           <IconSettings
             stroke={1.5}
@@ -344,7 +346,7 @@ const ProfileSection = () => {
                         {/*    }*/}
                         {/*  />*/}
                         {/*</ListItemButton>*/}
-                        <Typography variant="h4">{user.username}</Typography>
+                        <Typography variant="h4">{user?.username}</Typography>
                         <ListItemButton
                           sx={{
                             borderRadius: `${customization.borderRadius}px`,

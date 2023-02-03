@@ -9,6 +9,7 @@ export const Button = ({
   variant = 'contained',
   disabled = false,
   color = 'primary',
+  textColor = 'white',
   ...props
 }) => {
   return (
@@ -17,7 +18,7 @@ export const Button = ({
       disabled={disabled}
       variant={variant}
       size={size}
-      sx={{ color: 'white' }}
+      sx={{ color: textColor }}
       {...props}
     >
       {text ?? children}

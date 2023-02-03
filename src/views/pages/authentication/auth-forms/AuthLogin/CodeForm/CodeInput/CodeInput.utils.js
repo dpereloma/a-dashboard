@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { Helpers } from 'helpers';
+import * as Helpers from 'helpers';
 
 export const useCodeInput = (size, value, onChange) => {
   const sizeRef = useRef(size);
