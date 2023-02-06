@@ -1,9 +1,4 @@
-/**
- * Color intention that you want to used in your theme
- * @param {JsonObject} theme Theme customization object
- */
-
-const themePalette = (theme) => {
+const themePalette = (theme: any) => {
   return {
     mode: theme?.customization?.navType,
     common: {

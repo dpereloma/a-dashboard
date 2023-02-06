@@ -24,7 +24,6 @@ export function requestPagination(
   defaultSize?: number,
 ) {
   let index = 1;
-  console.log('111', pagination);
   if (pagination?.page && pagination.page > 0) {
     index = pagination.page;
   }

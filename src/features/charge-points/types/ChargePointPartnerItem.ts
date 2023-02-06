@@ -37,4 +37,5 @@ export interface ChargePointPartnerItem {
     name: string;
   };
   status: string;
+  tariffGroupId: string;
 }

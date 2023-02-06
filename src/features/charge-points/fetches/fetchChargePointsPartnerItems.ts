@@ -26,8 +26,6 @@ export async function fetchChargePointsPartnerItems<
   pagination?: Helpers.RequestPagination,
 ) {
   try {
-    console.log(2222);
-    console.log({ ...params, ...Helpers.requestPagination(pagination) });
     const header = await AuthHelpers.authHeader();
     const response = await Services.apiService.get<TResponse>(
       `/charging/charge-points/partners/${partnerId}/charge-points`,

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useAuth } from '../../../../features/auth/hooks';
 import { useChargePointsPartnerFilter } from '../../../../features/charge-points/hooks';
+import { useChargePointsPartnerItemsQuery } from '../../../../features/partners/queries';
 
 export const chargePointsItems = [
   {
@@ -94,18 +95,16 @@ export const useChargePoints = () => {
   const [open, setOpen] = useState(false);
   const [page, setPage] = useState(1);
 
-  console.log(filterChargePoints);
-
   const { user } = useAuth();
 
-  const query = useChargePointsPartnerFilter(
-    '89c81916-1fa9-4eb5-9af8-b1eec1c492ba',
-    {
-      route: '/charge-points',
-    },
+  const { data: chargePointPartner } = useChargePointsPartnerItemsQuery(
+    user?.id,
   );
 
-  console.log(query);
+  const query = useChargePointsPartnerFilter(chargePointPartner?.id, {
+    route: '/charge-points',
+    enabled: !!chargePointPartner,
+  });
 
   // const { data, isError, isLoading } = useChargePointsPartnerItemsQuery(
   //   '89c81916-1fa9-4eb5-9af8-b1eec1c492ba',

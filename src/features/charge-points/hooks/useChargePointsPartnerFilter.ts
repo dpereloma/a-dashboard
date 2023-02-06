@@ -64,12 +64,11 @@ export function useChargePointsPartnerFilter(
       options?.onChangeParams?.(newParams);
     },
   });
-  console.log(page);
 
   const query = useChargePointsPartnerItemsQuery(
     partnerId,
     Helpers.serializedQueryParams({ ...serializedParams, ...options?.params }),
-    { size: 1, ...optionsRef.current?.pagination, page },
+    { size: 20, ...optionsRef.current?.pagination, page },
     { enabled: options?.enabled, refetchOnWindowFocus: false },
   );
 

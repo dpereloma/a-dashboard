@@ -2,7 +2,9 @@ import { styled } from '@mui/styles';
 
 import { Box } from '@mui/material';
 
-export const Image = styled(Box)(({ theme, bgColor, color }) => ({
+import { ImageProps, TextWrapperProps } from './ItemCardInfo.types';
+
+export const Image = styled(Box)(({ theme, bgColor, color }: ImageProps) => ({
   width: theme.spacing(8),
   height: theme.spacing(8),
   borderRadius: '50%',
@@ -18,7 +20,7 @@ export const Wrapper = styled(Box)(({ theme }) => ({
   gap: theme.spacing(2),
 }));
 
-export const TextWrapper = styled(Box)(({ hasValue }) => ({
+export const TextWrapper = styled(Box)(({ hasValue }: TextWrapperProps) => ({
   display: 'flex',
   alignSelf: 'stretch',
   flexDirection: 'column',

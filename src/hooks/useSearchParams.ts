@@ -95,7 +95,6 @@ export function useSearchParams<T extends Record<string, any>, R>({
   }, [params]);
 
   const { page, ...other } = currentParams;
-  console.log(currentParams);
   return {
     page: Number(page || DEFAULT_PAGE),
     params: other,

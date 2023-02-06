@@ -1,9 +1,4 @@
-/**
- * Typography used in theme
- * @param {JsonObject} theme theme customization object
- */
-
-const themeTypography = (theme) => {
+const themeTypography = (theme: any) => {
   return {
     fontFamily: theme?.customization?.fontFamily,
     h6: {
@@ -71,6 +66,7 @@ const themeTypography = (theme) => {
       '& > label': {
         top: 23,
         left: 0,
+        // @ts-ignore
         color: theme.grey500,
         '&[data-shrink="false"]': {
           top: 5,

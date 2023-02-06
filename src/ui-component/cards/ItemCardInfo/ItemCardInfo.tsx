@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 
 import { Box, Typography } from '@mui/material';
 
 import * as S from './ItemCardInfo.styles';
+import { ItemCardInfoProps } from './ItemCardInfo.types';
 
-export const ItemCardInfo = ({
+export const ItemCardInfo: FC<ItemCardInfoProps> = ({
   title,
   value,
   img,
@@ -40,10 +40,4 @@ export const ItemCardInfo = ({
       </S.TextWrapper>
     </S.Wrapper>
   );
-};
-
-ItemCardInfo.propTypes = {
-  title: PropTypes.string,
-  value: PropTypes.string,
-  img: PropTypes.node,
 };

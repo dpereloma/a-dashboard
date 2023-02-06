@@ -1,4 +1,4 @@
-const componentStyleOverrides = (theme) => {
+const componentStyleOverrides = (theme: any) => {
   const bgColor = theme.colors?.grey50;
   return {
     MuiButton: {

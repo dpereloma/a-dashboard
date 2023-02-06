@@ -3,6 +3,7 @@ import { Box, Typography } from '@mui/material';
 
 import * as S from './DetailPageMenu.styles';
 import MainCard from '../MainCard';
+import { scrollToUp } from '../../../helpers';
 
 export const DetailPageMenu = ({ menuItems }) => {
   return (
@@ -12,8 +13,8 @@ export const DetailPageMenu = ({ menuItems }) => {
         contentSX={{ padding: 0, '&:last-child': { padding: 0 } }}
         title="Overview"
       >
-        {menuItems.map(({ icon, text }) => (
-          <S.SideMenuItem key={text}>
+        {menuItems.map(({ icon, text, id }) => (
+          <S.SideMenuItem onClick={() => scrollToUp(id)} key={text}>
             <S.SideMenuItemIcon>{icon}</S.SideMenuItemIcon>
             <Typography variant="subtitle1">{text}</Typography>
           </S.SideMenuItem>

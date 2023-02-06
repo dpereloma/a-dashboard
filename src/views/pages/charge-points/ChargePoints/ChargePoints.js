@@ -1,21 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import {
-  Box,
-  DialogActions,
-  DialogContent,
-  Divider,
-  Drawer,
-  IconButton,
-  Typography,
-} from '@mui/material';
-import {
-  ArrowBack,
-  ArrowForward,
-  FilterList,
-  FirstPage,
-} from '@mui/icons-material';
+import { Box, Drawer, IconButton, Typography } from '@mui/material';
+import { FilterList } from '@mui/icons-material';
 import MainCard from 'ui-component/cards/MainCard';
 import { SearchInput } from 'ui-component/inputs';
 import { DropdownMenu } from 'ui-component/extended/DropdownMenu';
@@ -96,54 +83,54 @@ const ChargePoints = () => {
         {/*    />*/}
         {/*  </Box>*/}
         {/*) : null}*/}
-        {!isLoading ? (
-          <>
-            <Divider />
-            <Box p={1}>
-              <ArrowPagination
-                page={page}
-                hasNext={hasNextPage}
-                hasPrev={hasPrevPage}
-                renderFirstButton={(props) => (
-                  <Button
-                    variant="outlined"
-                    startIcon={<FirstPage />}
-                    {...props}
-                  >
-                    First page
-                  </Button>
-                )}
-                renderPrevButton={(props) => (
-                  <Button
-                    variant="contained"
-                    disableElevation
-                    startIcon={<ArrowBack />}
-                    {...props}
-                  >
-                    Prev page
-                  </Button>
-                )}
-                renderNextButton={(props) => (
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    disableElevation
-                    endIcon={<ArrowForward />}
-                    {...props}
-                  >
-                    Next page
-                  </Button>
-                )}
-                onChange={(_, index) => handleChangePage(index)}
-              >
-                <Typography
-                  variant="caption"
-                  color="textSecondary"
-                >{`Page: ${page}`}</Typography>
-              </ArrowPagination>
-            </Box>
-          </>
-        ) : null}
+        {/*{!isLoading ? (*/}
+        {/*  <>*/}
+        {/*    <Divider />*/}
+        {/*    <Box p={1}>*/}
+        {/*      <ArrowPagination*/}
+        {/*        page={page}*/}
+        {/*        hasNext={hasNextPage}*/}
+        {/*        hasPrev={hasPrevPage}*/}
+        {/*        renderFirstButton={(props) => (*/}
+        {/*          <Button*/}
+        {/*            variant="outlined"*/}
+        {/*            startIcon={<FirstPage />}*/}
+        {/*            {...props}*/}
+        {/*          >*/}
+        {/*            First page*/}
+        {/*          </Button>*/}
+        {/*        )}*/}
+        {/*        renderPrevButton={(props) => (*/}
+        {/*          <Button*/}
+        {/*            variant="contained"*/}
+        {/*            disableElevation*/}
+        {/*            startIcon={<ArrowBack />}*/}
+        {/*            {...props}*/}
+        {/*          >*/}
+        {/*            Prev page*/}
+        {/*          </Button>*/}
+        {/*        )}*/}
+        {/*        renderNextButton={(props) => (*/}
+        {/*          <Button*/}
+        {/*            variant="contained"*/}
+        {/*            color="primary"*/}
+        {/*            disableElevation*/}
+        {/*            endIcon={<ArrowForward />}*/}
+        {/*            {...props}*/}
+        {/*          >*/}
+        {/*            Next page*/}
+        {/*          </Button>*/}
+        {/*        )}*/}
+        {/*        onChange={(_, index) => handleChangePage(index)}*/}
+        {/*      >*/}
+        {/*        <Typography*/}
+        {/*          variant="caption"*/}
+        {/*          color="textSecondary"*/}
+        {/*        >{`Page: ${page}`}</Typography>*/}
+        {/*      </ArrowPagination>*/}
+        {/*    </Box>*/}
+        {/*  </>*/}
+        {/*) : null}*/}
       </MainCard>
       <Drawer
         anchor="right"

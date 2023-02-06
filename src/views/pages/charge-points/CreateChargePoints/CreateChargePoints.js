@@ -21,12 +21,17 @@ import {
 import { useAuth } from 'features/auth/hooks';
 import { EdgeDialog } from '../../../../ui-component/EdgeDialog';
 import { useTheme } from '@mui/styles';
+import { useChargePointsPartnerItemsQuery } from '../../../../features/partners/queries';
 
 const CreateChargePoints = () => {
   const navigate = useNavigate();
   const theme = useTheme();
 
   const { user } = useAuth();
+
+  const { data: chargePointPartner } = useChargePointsPartnerItemsQuery(
+    user?.id,
+  );
 
   const [searchValue, setSearchValue] = useState('');
   const [selectedChargePoint, setSelectedChargePoint] = useState(null);
@@ -39,13 +44,6 @@ const CreateChargePoints = () => {
   );
   const assignMutation = useChargePointsPartnerAssignMutation();
 
-  const renderHeaderAction = () => (
-    <MenuItem sx={{ borderRadius: '8px' }} onClick={() => navigate(-1)}>
-      Back
-    </MenuItem>
-  );
-  console.log(data);
-
   const handleSearch = () => {
     refetch();
   };
@@ -55,7 +53,7 @@ const CreateChargePoints = () => {
       {
         deviceId: chargePoint?.device?.deviceId,
         deviceSn: chargePoint?.device?.chargePointSerialNumber,
-        partnerId: '89c81916-1fa9-4eb5-9af8-b1eec1c492ba',
+        partnerId: chargePointPartner?.id,
       },
       {
         onSuccess: () => {
