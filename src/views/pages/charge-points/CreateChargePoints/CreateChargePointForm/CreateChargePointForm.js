@@ -9,9 +9,9 @@ import {
   states,
 } from '../../ChargePoints/ChargePoints.utils';
 import * as S from './CreateChargePointForm.styles';
-import { Button } from '../../../../../ui-component/buttons/Button';
+import { Button } from 'ui-component/buttons/Button';
 import { useFormik } from 'formik';
-import { chargePointsActions } from '../../../../../store/chargePointsSlice';
+import { chargePointsActions } from 'store/chargePointsSlice';
 import { useDispatch } from 'react-redux';
 
 export const CreateChargePointForm = () => {

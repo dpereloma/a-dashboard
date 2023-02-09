@@ -2,7 +2,7 @@
 import { CardContent, Grid, Skeleton, Stack } from '@mui/material';
 
 // project import
-import MainCard from '../MainCard';
+import { MainCard } from '../MainCard';
 
 const ProductPlaceholder = () => (
   <MainCard content={false} boxShadow>

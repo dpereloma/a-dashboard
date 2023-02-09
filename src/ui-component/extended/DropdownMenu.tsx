@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, ReactNode, useState } from 'react';
 import { styled, useTheme } from '@mui/styles';
 
 import { Box, Menu, MenuItem, Typography } from '@mui/material';
@@ -9,16 +9,26 @@ const DropdownList = styled(Menu)(() => ({
   },
 }));
 
-export const DropdownMenu = ({ icon, label, renderContent }) => {
+interface DropdownMenuProps {
+  icon: any;
+  label: string;
+  renderContent?: () => ReactNode;
+}
+
+export const DropdownMenu: FC<DropdownMenuProps> = ({
+  icon,
+  label,
+  renderContent,
+}) => {
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedValue, setSelectedValue] = useState('');
 
-  const handleClick = (event) => {
+  const handleClick = (event: any) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = (event) => {
+  const handleClose = (event: any) => {
     setSelectedValue(event.target.textContent);
     setAnchorEl(null);
   };

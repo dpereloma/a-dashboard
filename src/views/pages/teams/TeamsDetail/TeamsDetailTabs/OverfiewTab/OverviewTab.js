@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import MainCard from '../../../../../../ui-component/cards/MainCard';
-import { ItemCardInfo } from '../../../../../../ui-component/cards/ItemCardInfo';
+import { MainCard } from 'ui-component/cards/MainCard';
+import { ItemCardInfo } from 'ui-component/cards/ItemCardInfo';
 import {
   East,
   MoreVertOutlined,

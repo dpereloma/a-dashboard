@@ -7,7 +7,7 @@ import * as Types from 'types';
 export const USE_CHARGE_POINT_QUERY_KEY = 'charge.point';
 
 export function useChargePoint(
-  chargePointId: string,
+  chargePointId?: string,
   options?: UseQueryOptions<Responses.ResChargePoint, Types.HttpError>,
 ) {
   return useQuery(

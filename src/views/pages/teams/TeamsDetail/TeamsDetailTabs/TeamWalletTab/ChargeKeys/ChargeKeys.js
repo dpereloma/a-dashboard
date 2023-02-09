@@ -1,6 +1,6 @@
 import React from 'react';
 
-import MainCard from 'ui-component/cards/MainCard';
+import { MainCard } from 'ui-component/cards/MainCard';
 import { ItemCardInfo } from 'ui-component/cards/ItemCardInfo';
 import { TextSnippet } from '@mui/icons-material';
 import { Button } from 'ui-component/buttons/Button';

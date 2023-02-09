@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ItemCardInfo } from 'ui-component/cards/ItemCardInfo';
 import { Box, Divider, Switch, TextField, Typography } from '@mui/material';
-import MainCard from 'ui-component/cards/MainCard';
+import { MainCard } from 'ui-component/cards/MainCard';
 
 import { TextSnippet } from '@mui/icons-material';
 

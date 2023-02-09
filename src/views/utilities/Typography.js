@@ -2,7 +2,7 @@ import { Grid, Link } from '@mui/material';
 import MuiTypography from '@mui/material/Typography';
 
 import SubCard from 'ui-component/cards/SubCard';
-import MainCard from 'ui-component/cards/MainCard';
+import { MainCard } from 'ui-component/cards/MainCard';
 import { gridSpacing } from 'store/constant';
 
 const Typography = () => (

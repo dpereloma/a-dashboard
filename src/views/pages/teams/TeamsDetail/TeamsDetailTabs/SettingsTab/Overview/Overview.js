@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Box } from '@mui/material';
 import { ItemCardInfo } from 'ui-component/cards/ItemCardInfo';
-import MainCard from 'ui-component/cards/MainCard';
+import { MainCard } from 'ui-component/cards/MainCard';
 
 import { TrendingUp } from '@mui/icons-material';
 

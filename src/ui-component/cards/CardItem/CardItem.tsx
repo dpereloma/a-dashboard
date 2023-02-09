@@ -20,7 +20,7 @@ export const CardItem: FC<CardItemProps> = ({
           <Typography variant="caption">{subtitle}</Typography>
         ) : null}
       </Box>
-      <S.ActionWrapper>{action}</S.ActionWrapper>
+      {action ? <S.ActionWrapper>{action}</S.ActionWrapper> : null}
     </S.CardItemWrapper>
   );
 };

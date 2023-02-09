@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { Box } from '@mui/material';
-import MainCard from 'ui-component/cards/MainCard';
+import { MainCard } from 'ui-component/cards/MainCard';
 import { DetailPageMenu } from 'ui-component/cards/DetailPageMenu';
 import { Overview } from './Overview';
 import { Subscriptions } from './Subscriptions';

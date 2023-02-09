@@ -7,7 +7,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import MainCard from '../../../../../ui-component/cards/MainCard';
+import { MainCard } from '../../../../../ui-component/cards/MainCard';
 import { ItemCardInfo } from '../../../../../ui-component/cards/ItemCardInfo';
 import {
   Done,

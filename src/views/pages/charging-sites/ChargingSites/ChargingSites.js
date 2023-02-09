@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import MainCard from 'ui-component/cards/MainCard';
+import { MainCard } from 'ui-component/cards/MainCard';
 import { SearchInput } from 'ui-component/inputs';
 import { ChargingSitesTable } from './ChargingSitesTable';
 import { Button } from 'ui-component/buttons/Button';

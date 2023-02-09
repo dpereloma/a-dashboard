@@ -11,7 +11,7 @@ import {
   Typography,
 } from '@mui/material';
 
-import MainCard from 'ui-component/cards/MainCard';
+import { MainCard } from 'ui-component/cards/MainCard';
 import TotalIncomeCard from 'ui-component/cards/Skeleton/TotalIncomeCard';
 
 import StorefrontTwoToneIcon from '@mui/icons-material/StorefrontTwoTone';

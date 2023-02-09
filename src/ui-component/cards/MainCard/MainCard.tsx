@@ -14,7 +14,7 @@ const headerSX = {
   '& .MuiCardHeader-action': { mr: 0, marginTop: 0, alignSelf: 'center' },
 };
 
-const MainCard = forwardRef(
+export const MainCard = forwardRef<any, any>(
   (
     {
       border = true,
@@ -40,6 +40,7 @@ const MainCard = forwardRef(
         {...others}
         sx={{
           border: border ? '1px solid' : 'none',
+          // @ts-ignore
           borderColor: theme.palette.primary[200] + 75,
           ':hover': {
             boxShadow: boxShadow
@@ -96,4 +97,3 @@ MainCard.propTypes = {
 };
 
 MainCard.displayName = 'MainCard';
-export default MainCard;

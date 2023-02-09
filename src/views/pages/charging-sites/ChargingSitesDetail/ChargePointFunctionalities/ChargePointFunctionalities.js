@@ -3,7 +3,7 @@ import React from 'react';
 import { ItemCardInfo } from 'ui-component/cards/ItemCardInfo';
 import { Box, Switch, Typography } from '@mui/material';
 import { Button } from 'ui-component/buttons/Button';
-import MainCard from 'ui-component/cards/MainCard';
+import { MainCard } from 'ui-component/cards/MainCard';
 
 import { PersonAddAlt1, RocketLaunch } from '@mui/icons-material';
 import * as S from '../../../teams/TeamsDetail/TeamsDetailTabs/InviteMemberModal/InviteMemberModal.styles';

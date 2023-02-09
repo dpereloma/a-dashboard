@@ -15,7 +15,7 @@ import {
 } from '@mui/material';
 
 import BajajAreaChartCard from './BajajAreaChartCard';
-import MainCard from 'ui-component/cards/MainCard';
+import { MainCard } from 'ui-component/cards/MainCard';
 import SkeletonPopularCard from 'ui-component/cards/Skeleton/PopularCard';
 import { gridSpacing } from 'store/constant';
 

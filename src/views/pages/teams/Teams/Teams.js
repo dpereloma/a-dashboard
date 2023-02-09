@@ -1,6 +1,6 @@
 import React from 'react';
 
-import MainCard from 'ui-component/cards/MainCard';
+import { MainCard } from 'ui-component/cards/MainCard';
 import { SearchInput } from 'ui-component/inputs';
 import { TeamsTable } from './TeamsTable';
 import { Button } from 'ui-component/buttons/Button';

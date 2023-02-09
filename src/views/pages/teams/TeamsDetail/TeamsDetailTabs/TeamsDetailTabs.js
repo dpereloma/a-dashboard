@@ -8,7 +8,7 @@ import { PriceGroupsTab } from './PriceGroupsTab/PriceGroupsTab';
 import { SchedulesTab } from './SchedulesTab';
 import { SettingsTab } from './SettingsTab';
 import { TeamWalletTab } from './TeamWalletTab';
-import MainCard from 'ui-component/cards/MainCard';
+import { MainCard } from 'ui-component/cards/MainCard';
 import { CreateMemberModal } from './MembersTab/CreateMemberModal';
 import { InviteMemberModal } from './InviteMemberModal';
 import { Button } from 'ui-component/buttons/Button';

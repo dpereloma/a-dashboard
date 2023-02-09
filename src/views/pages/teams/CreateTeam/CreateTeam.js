@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Box, MenuItem } from '@mui/material';
-import MainCard from 'ui-component/cards/MainCard';
+import { MainCard } from 'ui-component/cards/MainCard';
 import { CreateTeamForm } from './CreateTeamForm';
 
 const CreateTeam = () => {

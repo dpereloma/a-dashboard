@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { Box, Typography } from '@mui/material';
-import MainCard from 'ui-component/cards/MainCard';
+import { MainCard } from 'ui-component/cards/MainCard';
 import { TeamsDetailTabs } from './TeamsDetailTabs';
 
 import { ArrowBackIos } from '@mui/icons-material';

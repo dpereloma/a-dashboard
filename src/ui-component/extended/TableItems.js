@@ -33,9 +33,9 @@ export const TableItems = ({
   renderTableHeader,
   renderTableBody,
   items,
-  renderAction,
+  renderAction = undefined,
   key = 'id',
-  handleSelect,
+  handleSelect = undefined,
   emptyItemsMessage,
 }) => {
   const hasActions = !!renderAction;

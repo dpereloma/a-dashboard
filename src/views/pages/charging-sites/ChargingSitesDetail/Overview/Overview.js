@@ -3,7 +3,7 @@ import React from 'react';
 import { Box, MenuItem, Select, TextField, Typography } from '@mui/material';
 import { ItemCardInfo } from 'ui-component/cards/ItemCardInfo';
 import { Button } from 'ui-component/buttons/Button';
-import MainCard from 'ui-component/cards/MainCard';
+import { MainCard } from 'ui-component/cards/MainCard';
 
 import * as S from '../../../teams/TeamsDetail/TeamsDetailTabs/InviteMemberModal/InviteMemberModal.styles';
 import {

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Box, Drawer, IconButton, Typography } from '@mui/material';
 import { FilterList } from '@mui/icons-material';
-import MainCard from 'ui-component/cards/MainCard';
+import { MainCard } from 'ui-component/cards/MainCard';
 import { SearchInput } from 'ui-component/inputs';
 import { DropdownMenu } from 'ui-component/extended/DropdownMenu';
 import { ChargePointsTable } from './ChargePointsTable';

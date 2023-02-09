@@ -6,7 +6,7 @@ import { Avatar, Box, Button, Grid, Typography } from '@mui/material';
 
 import Chart from 'react-apexcharts';
 
-import MainCard from 'ui-component/cards/MainCard';
+import { MainCard } from 'ui-component/cards/MainCard';
 import SkeletonTotalOrderCard from 'ui-component/cards/Skeleton/EarningCard';
 
 import ChartDataMonth from './chart-data/total-order-month-line-chart';

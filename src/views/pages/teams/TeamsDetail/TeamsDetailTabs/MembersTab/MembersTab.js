@@ -5,7 +5,7 @@ import * as S from '../../../../charge-points/ChargePoints/ChargePoints.styles';
 import { SearchInput } from 'ui-component/inputs';
 import { DropdownMenu } from 'ui-component/extended/DropdownMenu';
 import { FilterList } from '@mui/icons-material';
-import MainCard from 'ui-component/cards/MainCard';
+import { MainCard } from 'ui-component/cards/MainCard';
 import { useMembersTab } from './MembersTab.utils';
 import { MembersTable } from './MembersTable';
 // import { CreateMemberModal } from './CreateMemberModal';

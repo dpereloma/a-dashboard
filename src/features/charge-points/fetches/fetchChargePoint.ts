@@ -17,7 +17,7 @@ import * as Types from '../../../types';
 export async function fetchChargePoint<
   TResponse = Responses.ResChargePoint,
   TError = Types.HttpError,
->(chargePointId: string) {
+>(chargePointId?: string) {
   try {
     const header = await AuthHelpers.authHeader();
     const response = await Services.apiService.get<TResponse>(

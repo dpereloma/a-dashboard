@@ -3,7 +3,7 @@ import React from 'react';
 import { ItemCardInfo } from 'ui-component/cards/ItemCardInfo';
 import { Box, TextField, Typography } from '@mui/material';
 import { Button } from 'ui-component/buttons/Button';
-import MainCard from 'ui-component/cards/MainCard';
+import { MainCard } from 'ui-component/cards/MainCard';
 
 import { Timeline } from '@mui/icons-material';
 

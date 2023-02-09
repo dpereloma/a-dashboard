@@ -3,7 +3,7 @@ import React from 'react';
 import { TextSnippet } from '@mui/icons-material';
 import { ItemCardInfo } from 'ui-component/cards/ItemCardInfo';
 import { Button } from 'ui-component/buttons/Button';
-import MainCard from 'ui-component/cards/MainCard';
+import { MainCard } from 'ui-component/cards/MainCard';
 import { TeamWalletInvoicesTable } from './TeamWalletInvoicesTable';
 import { CreateEnableInvoice } from './CreateEnableInvoice';
 

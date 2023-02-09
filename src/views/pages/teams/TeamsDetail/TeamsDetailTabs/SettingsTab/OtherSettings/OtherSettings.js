@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import { ItemCardInfo } from 'ui-component/cards/ItemCardInfo';
 import { Button } from 'ui-component/buttons/Button';
-import MainCard from 'ui-component/cards/MainCard';
+import { MainCard } from 'ui-component/cards/MainCard';
 
 import { TextSnippet } from '@mui/icons-material';
 

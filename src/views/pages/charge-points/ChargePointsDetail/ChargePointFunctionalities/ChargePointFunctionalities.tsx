@@ -3,11 +3,11 @@ import React from 'react';
 import { ItemCardInfo } from 'ui-component/cards/ItemCardInfo';
 import { Box, Stack, Switch, Typography } from '@mui/material';
 import { Button } from 'ui-component/buttons/Button';
-import MainCard from 'ui-component/cards/MainCard';
+import { MainCard } from 'ui-component/cards/MainCard';
+import { ListItem } from './ListItem';
 
 import { PersonAddAlt1, RocketLaunch } from '@mui/icons-material';
 import { MenuItemsIds } from '../ChargePointsDetail.types';
-import { ListItem } from './ListItem';
 
 export const ChargePointFunctionalities = () => {
   return (

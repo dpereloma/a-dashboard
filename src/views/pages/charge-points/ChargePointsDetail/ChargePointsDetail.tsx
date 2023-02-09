@@ -3,7 +3,7 @@ import { useParams } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 
 import { Box, Stack } from '@mui/material';
-import MainCard from 'ui-component/cards/MainCard';
+import { MainCard } from 'ui-component/cards/MainCard';
 
 import { ArrowBackIos } from '@mui/icons-material';
 import { useChargePoint } from 'features/charge-points/queries';
@@ -14,9 +14,10 @@ import { Connection } from './Connection';
 import { ChargePointSettings } from './ChargePointSettings';
 import { Overview } from './Overview';
 import { menuItems } from './ChargePointsDetail.utils';
+import { ChargeSession } from './ChargeSession';
 
 const ChargePointsDetail = () => {
-  const { id } = useParams();
+  const { id } = useParams<{ id?: string }>();
   const navigate = useNavigate();
 
   const { data: chargePoint } = useChargePoint(id);
@@ -34,6 +35,7 @@ const ChargePointsDetail = () => {
         <Stack sx={{ flexGrow: 1 }} spacing={2}>
           <Overview />
           <ChargePointSettings />
+          <ChargeSession />
           <Subscriptions />
           <ChargePointFunctionalities />
           <Connection />

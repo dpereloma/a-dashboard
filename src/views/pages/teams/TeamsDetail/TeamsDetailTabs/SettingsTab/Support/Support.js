@@ -4,7 +4,7 @@ import { useTheme } from '@mui/styles';
 import { Box, Typography } from '@mui/material';
 import { ItemCardInfo } from 'ui-component/cards/ItemCardInfo';
 import { Chip } from 'ui-component/Chip';
-import MainCard from 'ui-component/cards/MainCard';
+import { MainCard } from 'ui-component/cards/MainCard';
 
 import {
   CheckCircleOutlined,

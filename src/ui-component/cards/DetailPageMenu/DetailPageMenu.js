@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Typography } from '@mui/material';
 
 import * as S from './DetailPageMenu.styles';
-import MainCard from '../MainCard';
+import { MainCard } from '../MainCard';
 import { scrollToUp } from '../../../helpers';
 
 export const DetailPageMenu = ({ menuItems }) => {
