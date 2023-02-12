@@ -2,6 +2,7 @@ import { useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRouteQuery } from './useRouteQuery';
 import { serializedQueryParams } from 'helpers';
+import { useLocation } from 'react-router';
 
 /**
  * UseRouteQueryParams options
@@ -21,7 +22,6 @@ export interface UseRouteQueryParamsOptions {
 export function useRouteQueryParams({ route }: UseRouteQueryParamsOptions) {
   const navigate = useNavigate();
   const routeQueryParams = useRouteQuery();
-
   /**
    * Handle params changes
    *

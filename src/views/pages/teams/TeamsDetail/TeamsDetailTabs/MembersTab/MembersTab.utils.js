@@ -77,7 +77,7 @@ export const useMembersTab = (members) => {
       setFilterMembers(members);
     }
   }, [filterValues]);
-  console.log(filteredMembers);
+
   return {
     filteredMembers,
     filterValues,

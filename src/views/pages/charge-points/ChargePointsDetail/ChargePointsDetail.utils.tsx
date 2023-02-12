@@ -1,6 +1,7 @@
 import {
   CompareArrows,
   Power,
+  Receipt,
   RocketLaunch,
   Settings,
   Timeline,
@@ -23,6 +24,11 @@ export const menuItems = [
     icon: <Power />,
     text: 'Charge sessions',
     id: MenuItemsIds.CHARGE_SESSIONS,
+  },
+  {
+    icon: <Receipt />,
+    text: 'Transactions',
+    id: MenuItemsIds.TRANSACTIONS,
   },
   {
     icon: <WorkspacePremium />,

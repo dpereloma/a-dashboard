@@ -12,6 +12,8 @@ import {
 import { styled } from '@mui/styles';
 import { DropdownMenu } from './DropdownMenu';
 import { MoreVertOutlined } from '@mui/icons-material';
+import PropTypes from 'prop-types';
+import { ChargePointsFilter } from '../../views/pages/charge-points/ChargePoints/ChargePointsFilter';
 
 const HeadRow = styled(TableHead)(() => ({
   '& th': {
@@ -33,9 +35,9 @@ export const TableItems = ({
   renderTableHeader,
   renderTableBody,
   items,
-  renderAction = undefined,
+  renderAction,
   key = 'id',
-  handleSelect = undefined,
+  handleSelect,
   emptyItemsMessage,
 }) => {
   const hasActions = !!renderAction;
@@ -89,4 +91,14 @@ export const TableItems = ({
       ) : null}
     </Box>
   );
+};
+
+TableItems.propTypes = {
+  renderTableHeader: PropTypes.node,
+  renderTableBody: PropTypes.node,
+  items: PropTypes.object,
+  renderAction: PropTypes.node,
+  key: PropTypes.string,
+  handleSelect: PropTypes.func,
+  emptyItemsMessage: PropTypes.string,
 };

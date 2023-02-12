@@ -1,7 +1,8 @@
-import { IconKey } from '@tabler/icons';
+import { IconKey, IconTransferIn } from '@tabler/icons';
 
 const icons = {
   IconKey,
+  IconTransferIn,
 };
 
 const pages = {
@@ -60,6 +61,13 @@ const pages = {
         //   target: false,
         // },
       ],
+    },
+    {
+      id: 'transactions',
+      title: 'Transactions',
+      type: 'item',
+      url: '/transactions',
+      icon: icons.IconTransferIn,
     },
   ],
 };

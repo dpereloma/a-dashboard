@@ -6,7 +6,7 @@ import * as Types from 'types';
 
 export const USE_PARTNER_USER_QUERY_KEY = 'partner.user';
 
-export function useChargePointsPartnerItemsQuery(
+export function usePartnerUserQuery(
   userId: string,
   options?: UseQueryOptions<Responses.ResPartnerUser, Types.HttpError>,
 ) {

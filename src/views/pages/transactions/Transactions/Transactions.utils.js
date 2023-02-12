@@ -1,112 +1,17 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useAuth } from '../../../../features/auth/hooks';
-import { useChargePointsPartnerFilter } from '../../../../features/charge-points/hooks';
-import {
-  useChargePointsPartnerItemsQuery,
-  usePartnerUserQuery,
-} from '../../../../features/partners/queries';
+import { useTransactionsFilter } from '../../../../features/transactions/hooks';
 
-export const chargePointsItems = [
-  {
-    id: 1,
-    name: 'name',
-    code: 'code',
-    site: 'site',
-    pointState: 'active',
-    connection: 'disconnected',
-    accessibility: 'public',
-    state: 'disconnected',
-  },
-  {
-    id: 2,
-    name: 'name1',
-    code: 'code1',
-    site: 'site',
-    pointState: 'active',
-    connection: 'disconnected',
-    accessibility: 'public',
-    state: 'connected',
-  },
-  {
-    id: 3,
-    name: 'name2',
-    code: 'code2',
-    site: 'site',
-    pointState: 'inactive',
-    connection: 'disconnected',
-    accessibility: 'static',
-    state: 'paused',
-  },
-];
-
-export const states = [
-  {
-    label: 'Connected',
-    value: 'connected',
-  },
-  {
-    label: 'Disconnected',
-    value: 'disconnected',
-  },
-  {
-    label: 'Paused',
-    value: 'paused',
-  },
-];
-
-export const accessibilities = [
-  {
-    label: 'Public',
-    value: 'public',
-  },
-  {
-    label: 'Static',
-    value: 'static',
-  },
-];
-
-export const connections = [
-  {
-    label: 'Connected',
-    value: 'connected',
-  },
-  {
-    label: 'Disconnected',
-    value: 'disconnected',
-  },
-  {
-    label: 'Paused',
-    value: 'paused',
-  },
-];
-
-export const pointStates = [
-  {
-    label: 'Active',
-    value: 'active',
-  },
-  {
-    label: 'Inactive',
-    value: 'inactive',
-  },
-];
-
-export const useChargePoints = () => {
+export const useTransactions = () => {
   const [searchValue, setSearchValue] = useState('');
   const [filterValues, setFilterValues] = useState({});
   const [filterChargePoints, setFilterChargePoints] = useState(null);
   const [open, setOpen] = useState(false);
   const [page, setPage] = useState(1);
 
-  const { user } = useAuth();
-
-  const { data: chargePointPartner } = usePartnerUserQuery(user?.id);
-
-  const query = useChargePointsPartnerFilter(chargePointPartner?.id, {
+  const query = useTransactionsFilter({
     route: '/charge-points',
     enabled: true,
   });
-
   // const { data, isError, isLoading } = useChargePointsPartnerItemsQuery(
   //   '89c81916-1fa9-4eb5-9af8-b1eec1c492ba',
   //   undefined,
@@ -160,7 +65,7 @@ export const useChargePoints = () => {
   }, [query?.data]);
 
   return {
-    filteredChargePoints,
+    filteredChargePoints: query?.data?.items,
     filterValues,
     searchValue,
     open,
@@ -175,6 +80,9 @@ export const useChargePoints = () => {
     onSearchChange,
     onSearchClear,
     handlePageChange,
-    handleChangePage: query?.handleChangePage,
+    handleChangePage: (index) => {
+      query?.handleChangePage(index);
+      query?.refetch();
+    },
   };
 };

@@ -15,6 +15,7 @@ import { ChargePointSettings } from './ChargePointSettings';
 import { Overview } from './Overview';
 import { menuItems } from './ChargePointsDetail.utils';
 import { ChargeSession } from './ChargeSession';
+import { Transactions } from './Transactions';
 
 const ChargePointsDetail = () => {
   const { id } = useParams<{ id?: string }>();
@@ -36,6 +37,7 @@ const ChargePointsDetail = () => {
           <Overview />
           <ChargePointSettings />
           <ChargeSession />
+          <Transactions deviceId={chargePoint?.device?.deviceId} />
           <Subscriptions />
           <ChargePointFunctionalities />
           <Connection />

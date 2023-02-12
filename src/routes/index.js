@@ -5,6 +5,7 @@ import AuthenticationRoutes from './AuthenticationRoutes';
 import ChargePointsRoutes from './ChargePointsRoutes';
 import TeamsRoutes from './TeamsRoutes';
 import ChargingSitesRoutes from './ChargingSitesRoutes';
+import TransactionsRoutes from './TransactionsRoutes';
 
 const ThemeRoutes = () => {
   return useRoutes([
@@ -13,6 +14,7 @@ const ThemeRoutes = () => {
     ChargePointsRoutes,
     TeamsRoutes,
     ChargingSitesRoutes,
+    TransactionsRoutes,
   ]);
 };
 export default ThemeRoutes;

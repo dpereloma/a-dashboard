@@ -4,19 +4,19 @@ import { useRouteQueryParams, UseSearchParams, useSearchParams } from 'hooks';
 import { Requests } from '../types';
 
 import * as Helpers from 'helpers';
-import { useChargePointsPartnerItemsQuery } from '../queries';
+import { useTransactionsSearchQuery } from '../queries';
 import { useLocation } from 'react-router';
 
 const DEFAULT_PAGE = 1;
 
-export type UsePromoCampaignPromoCodesFilterParams =
-  UseSearchParams<Requests.ReqChargePointsPartnerItemsParams>;
+export type UseTransactionsFilterParams =
+  UseSearchParams<Requests.ReqTransactionsItemsParams>;
 
 const serializeParams = ({
   search,
   page,
   ...other
-}: UsePromoCampaignPromoCodesFilterParams) => {
+}: UseTransactionsFilterParams) => {
   const pageNumber = Number(page);
   const pageCurrent = !page || isNaN(pageNumber) ? DEFAULT_PAGE : Number(page);
   return {
@@ -29,15 +29,12 @@ const serializeParams = ({
 export interface UseChargePointsPartnerFilterOptions {
   route: string;
   enabled?: boolean;
-  params?: Requests.ReqChargePointsPartnerItemsParams;
+  params?: Requests.ReqTransactionsItemsParams;
   pagination?: Helpers.RequestPagination;
-  onChangeParams?: (params: UsePromoCampaignPromoCodesFilterParams) => void;
+  onChangeParams?: (params: UseTransactionsFilterParams) => void;
 }
 
-export function useChargePointsPartnerFilter(
-  partnerId: string,
-  options?: UseChargePointsPartnerFilterOptions,
-) {
+export function useTransactionsFilter(options?: UseTransactionsFilterParams) {
   const optionsRef = useRef(options);
   const location = useLocation();
 
@@ -58,10 +55,10 @@ export function useChargePointsPartnerFilter(
     handleChangeParams,
     handleChangeSearch,
   } = useSearchParams<
-    UsePromoCampaignPromoCodesFilterParams,
-    Requests.ReqChargePointsPartnerItemsParams
+    UseTransactionsFilterParams,
+    Requests.ReqTransactionsItemsParams
   >({
-    params: routeQueryParams as UsePromoCampaignPromoCodesFilterParams,
+    params: routeQueryParams as UseTransactionsFilterParams,
     serialize: (data: any) => serializeParams(data),
     onChangeParams: (newParams: any) => {
       handleChangeRouteParams(newParams);
@@ -69,8 +66,7 @@ export function useChargePointsPartnerFilter(
     },
   });
 
-  const query = useChargePointsPartnerItemsQuery(
-    partnerId,
+  const query = useTransactionsSearchQuery(
     Helpers.serializedQueryParams({ ...serializedParams, ...options?.params }),
     {
       size: 10,

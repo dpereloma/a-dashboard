@@ -1,6 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { useChargePoints } from '../../charge-points/ChargePoints/ChargePoints.utils';
+import { ChargePointsFilter } from '../../charge-points/ChargePoints/ChargePointsFilter';
+import * as S from '../../charge-points/ChargePoints/ChargePoints.styles';
+import { SearchInput } from '../../../../ui-component/inputs';
 import {
   Box,
   CircularProgress,
@@ -9,26 +12,22 @@ import {
   IconButton,
   Typography,
 } from '@mui/material';
+import { DropdownMenu } from '../../../../ui-component/extended/DropdownMenu';
 import {
   ArrowBack,
   ArrowForward,
   FilterList,
   FirstPage,
 } from '@mui/icons-material';
-import { MainCard } from 'ui-component/cards/MainCard';
-import { SearchInput } from 'ui-component/inputs';
-import { DropdownMenu } from 'ui-component/extended/DropdownMenu';
-import { ChargePointsTable } from './ChargePointsTable';
-import { ChargePointsFilter } from './ChargePointsFilter';
-import { Button } from 'ui-component/buttons/Button';
-
-import { useChargePoints } from './ChargePoints.utils';
-import * as S from './ChargePoints.styles';
+import { Button } from '../../../../ui-component/buttons/Button';
+import { MainCard } from '../../../../ui-component/cards/MainCard';
+import { ChargePointsTable } from '../../charge-points/ChargePoints/ChargePointsTable';
 import AnimateButton from '../../../../ui-component/extended/AnimateButton';
-import { Pagination } from '@mui/lab';
+import { useTransactions } from './Transactions.utils';
 import { ArrowPagination } from '../../../../ui-component/ArrowPagination';
+import { TransactionsTable } from '../../charge-points/ChargePointsDetail/Transactions/TransactionsTable';
 
-const ChargePoints = () => {
+const Transactions = () => {
   const navigate = useNavigate();
 
   const {
@@ -46,14 +45,7 @@ const ChargePoints = () => {
     handleToggle,
     onSearchChange,
     onSearchClear,
-  } = useChargePoints();
-
-  const renderFilterList = () => (
-    <ChargePointsFilter
-      handleChange={handleChange}
-      filterValues={filterValues}
-    />
-  );
+  } = useTransactions();
 
   const renderAction = () => (
     <S.ActionsWrapper>
@@ -64,10 +56,6 @@ const ChargePoints = () => {
         onChange={onSearchChange}
         onClear={onSearchClear}
       />
-      <IconButton size="small">
-        <DropdownMenu icon={FilterList} renderContent={renderFilterList} />
-      </IconButton>
-      <Button text="Add charge point" onClick={handleToggle} />
     </S.ActionsWrapper>
   );
 
@@ -76,8 +64,8 @@ const ChargePoints = () => {
       <MainCard
         sx={{ marginTop: '16px' }}
         contentSX={{ padding: 0 }}
-        title="Charge Points"
-        secondary={renderAction()}
+        title="Transactions"
+        // secondary={renderAction()}
       >
         {isLoading ? (
           <Box p={2} display="flex" alignItems="center" justifyContent="center">
@@ -87,10 +75,7 @@ const ChargePoints = () => {
         {!!error ? (
           <Typography variant="body2">{error?.message}</Typography>
         ) : null}
-        <ChargePointsTable
-          chargePoints={filteredChargePoints}
-          handleOpenAddChargePoint={handleToggle}
-        />
+        <TransactionsTable transactions={filteredChargePoints} />
         {/*{total && total > 1 ? (*/}
         {/*  <Box p={1} display="flex" justifyContent="center">*/}
         {/*    <Pagination*/}
@@ -203,4 +188,4 @@ const ChargePoints = () => {
   );
 };
 
-export default ChargePoints;
+export default Transactions;

@@ -7,6 +7,7 @@ import {
   DialogActions,
   DialogContent,
   MenuItem,
+  Select,
   TextField,
   Typography,
 } from '@mui/material';
@@ -17,11 +18,22 @@ import AnimateButton from 'ui-component/extended/AnimateButton';
 import {
   useChargePointsPartnerAssignMutation,
   useChargePointsSearchQuery,
+  useChargePointsPartnerItemsQuery,
 } from 'features/charge-points/queries';
 import { useAuth } from 'features/auth/hooks';
-import { EdgeDialog } from '../../../../ui-component/EdgeDialog';
+import { EdgeDialog } from 'ui-component/EdgeDialog';
 import { useTheme } from '@mui/styles';
-import { useChargePointsPartnerItemsQuery } from '../../../../features/partners/queries';
+
+const searchParams = [
+  {
+    value: 'deviceSn',
+    label: 'Serial number',
+  },
+  {
+    value: 'name',
+    label: 'Name',
+  },
+];
 
 const CreateChargePoints = () => {
   const navigate = useNavigate();
@@ -34,10 +46,13 @@ const CreateChargePoints = () => {
   );
 
   const [searchValue, setSearchValue] = useState('');
+  const [selectedSearchParam, setSelectedSearchParam] = useState(
+    searchParams[0].value,
+  );
   const [selectedChargePoint, setSelectedChargePoint] = useState(null);
   const [openConfirm, setOpenConfirm] = useState(false);
   const { data, refetch } = useChargePointsSearchQuery(
-    { deviceSn: searchValue, partnerSet: false },
+    { [selectedSearchParam]: searchValue || undefined, partnerSet: false },
     {
       enabled: !!searchValue,
     },
@@ -63,6 +78,10 @@ const CreateChargePoints = () => {
     );
   };
 
+  const handleChangeSearchParam = (e) => {
+    setSelectedSearchParam(e.target.value);
+  };
+
   return (
     <>
       {/*<MainCard*/}
@@ -83,13 +102,31 @@ const CreateChargePoints = () => {
                 fullWidth
                 size="large"
                 value={searchValue}
-                placeholder="Serial number"
+                placeholder={
+                  selectedSearchParam === 'deviceSn' ? 'Serial number' : 'Name'
+                }
                 onChange={(e) => setSearchValue(e.target.value)}
                 InputLabelProps={{
                   shrink: true,
                 }}
                 type="text"
               />
+              <Select
+                defaultValue="Serial number"
+                size="large"
+                name={name}
+                value={selectedSearchParam}
+                onChange={handleChangeSearchParam}
+                SelectProps={{
+                  native: true,
+                }}
+              >
+                {searchParams.map(({ value, label }) => (
+                  <MenuItem key={label} value={value}>
+                    {label}
+                  </MenuItem>
+                ))}
+              </Select>
               <Button onClick={handleSearch} size="large" text="Search" />
             </Box>
           }

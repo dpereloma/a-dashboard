@@ -6,4 +6,5 @@ export enum MenuItemsIds {
   FUNCTIONALITIES = 'functionalities',
   CONNECTION = 'connection',
   DEEPLINK = 'Deeplink',
+  TRANSACTIONS = 'transactions',
 }
